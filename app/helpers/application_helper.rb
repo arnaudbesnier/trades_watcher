@@ -9,6 +9,7 @@ module ApplicationHelper
 
   def format_price(value)
     return nil unless value
+    return "€ - " if value == 0
     "€ #{('%.2f' % value).to_s}"
   end
 

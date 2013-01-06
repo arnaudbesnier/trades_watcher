@@ -27,6 +27,8 @@ class Trade < ActiveRecord::Base
 
 	belongs_to :company
 
+	validate :company_id, :presence => true
+
 	def total_bought
 		shares * price_bought
 	end
@@ -34,6 +36,15 @@ class Trade < ActiveRecord::Base
 	def total_sold
 		return nil unless price_sold
 		shares * price_sold
+	end
+
+	def total_fees
+		taxes + commission_total
+	end
+
+	def gain
+		return nil if price_sold.nil?
+		(price_sold - price_bought) * shares - total_fees
 	end
 
 end
