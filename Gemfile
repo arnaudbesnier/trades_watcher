@@ -7,6 +7,9 @@ gem 'sqlite3'
 
 gem "yahoofinance", "~> 1.2.2" # Near real-time quotes
 
+group :development do
+	gem 'annotate', ">=2.5.0"
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
