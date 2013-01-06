@@ -16,12 +16,11 @@
 
 class Trade < ActiveRecord::Base
 
-	def opened?
-		closed_at.nil?
-	end
+	attr_accessible :opened_at, :closed_at, :shares,
+					:price_bought, :price_sold,
+					:commission_total, :taxes
 
-	def closed?
-		!closed_at.nil?
-	end
+	scope :opened, where('closed_at IS NULL') 
+	scope :closed, where('closed_at IS NOT NULL')
 
 end

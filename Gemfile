@@ -5,10 +5,12 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.2'
 gem 'sqlite3'
 
-gem "yahoofinance", "~> 1.2.2" # Near real-time quotes
+gem 'yahoofinance', '~> 1.2.2' # Near real-time quotes
+
+gem 'activeadmin'
 
 group :development do
-	gem 'annotate', ">=2.5.0"
+	gem 'annotate', '>=2.5.0'
 end
 
 # Gems used only for assets and not required
