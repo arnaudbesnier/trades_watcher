@@ -15,12 +15,10 @@ ActiveAdmin.register Trade do
     	column :shares
     	column(:opened_at)    { |t| format_datetime(t.opened_at) }
     	column(:price_bought) { |t| format_price(t.price_bought) }
-    	column(:total_bought) { |t| format_price(t.total_bought) }
-    	column(:closed_at)    { |t| format_datetime(t.closed_at) }
     	column(:price_sold)   { |t| format_price(t.price_sold) }
-    	column(:total_sold)   { |t| format_price(t.total_sold) }
+    	column(:closed_at)    { |t| format_datetime(t.closed_at) }
     	column(:fees)         { |t| format_price(t.total_fees) }
-    	column(:gains)        { |t| format_price(t.gain) }
+    	column(:gains)        { |t| "#{format_price(t.gain)} (#{t.performance})" if t.gain }
   	end
 
 end

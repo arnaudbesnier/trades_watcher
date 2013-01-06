@@ -29,22 +29,24 @@ class Trade < ActiveRecord::Base
 
 	validate :company_id, :presence => true
 
-	def total_bought
-		shares * price_bought
-	end
-
-	def total_sold
-		return nil unless price_sold
-		shares * price_sold
-	end
-
 	def total_fees
 		taxes + commission_total
 	end
 
 	def gain
 		return nil if price_sold.nil?
-		(price_sold - price_bought) * shares - total_fees
+		shares * (price_sold - price_bought) - total_fees
+	end
+
+	def performance
+		return nil if gain.nil?
+		"#{(gain / (price_bought * shares) * 100).to_i} %"
+	end
+
+private
+
+	def total_bought
+		shares * price_bought
 	end
 
 end
