@@ -1,0 +1,7 @@
+<% @quotes.each do |symbol, data| %>
+	<%= @quotes[symbol].name %>
+	[<%= @quotes[symbol].symbol %>]<br />
+	Value: <%= @quotes[symbol].value %> <br />
+	<%= @quotes[symbol].date %> - <%= @quotes[symbol].time %> <br />
+	<%= @quotes[symbol].format_html %> <br /><br />
+<% end %>
