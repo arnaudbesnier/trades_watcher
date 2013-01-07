@@ -2,6 +2,8 @@ include ApplicationHelper
 
 ActiveAdmin.register Trade do
 
+	config.sort_order = :opened_at_asc
+
 	scope :all
 	scope :opened
 	scope :closed
