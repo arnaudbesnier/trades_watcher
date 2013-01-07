@@ -2,15 +2,16 @@ source 'https://rubygems.org'
 
 # Default config =======================================
 
-gem 'rails', '3.2.2'
-gem 'sqlite3'
+gem 'rails', '3.2.2'           # Framework
+gem 'sqlite3'                  # Database
+
+gem 'activeadmin'              # Admin layout
+gem 'rufus-scheduler'          # Sheduler
 
 gem 'yahoofinance', '~> 1.2.2' # Near real-time quotes
 
-gem 'activeadmin'
-
 group :development do
-	gem 'annotate', '>=2.5.0'
+	gem 'annotate', '>=2.5.0'  # Models annotation
 end
 
 # Gems used only for assets and not required
