@@ -1,7 +1,8 @@
 class Portfolio
 
 	def initialize
-		@symbols = ['GTO.PA', 'RNO.PA']
+		@companies = Trade.opened.map(&:company_id).uniq
+		@symbols   = Company.where(:id => @companies).map(&:symbol).collect { |symbol| "#{symbol}.PA" }
 		@quotes  = {}
 
 		data = YahooFinance::get_standard_quotes(@symbols)
