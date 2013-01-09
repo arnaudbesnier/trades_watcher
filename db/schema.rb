@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106153806) do
+ActiveRecord::Schema.define(:version => 20130109204310) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -49,6 +49,19 @@ ActiveRecord::Schema.define(:version => 20130106153806) do
   create_table "companies", :force => true do |t|
     t.string "name"
     t.string "symbol"
+  end
+
+  create_table "quotes", :force => true do |t|
+    t.integer  "company_id"
+    t.decimal  "value"
+    t.decimal  "value_day_open"
+    t.decimal  "value_day_low"
+    t.decimal  "value_day_high"
+    t.decimal  "variation_day_low"
+    t.decimal  "variation_day_high"
+    t.decimal  "variation_day_current"
+    t.integer  "volume"
+    t.datetime "created_at"
   end
 
   create_table "trades", :force => true do |t|

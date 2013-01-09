@@ -1,32 +1,10 @@
-class Quote
+class Quote < ActiveRecord::Base
 
-	def initialize(quote)
-		@quote = quote
-	end
+	attr_accessible :company_id, :value, :volume, :created_at,
+					:value_day_open, :value_day_low, :value_day_high,
+					:variation_day_current, :variation_day_low, :variation_day_high
 
-	# Presentation methods ===================================
 
-	def symbol
-		@quote.send('symbol')
-	end
+	belongs_to :company
 
-	def name
-		@quote.send('name')
-	end
-
-	def value
-		@quote.send('lastTrade')
-	end
-
-	def date
-		@quote.send('date')
-	end
-
-	def time
-		@quote.send('time')
-	end
-
-	def format_html
-		@quote.to_s.html_safe
-	end
 end
