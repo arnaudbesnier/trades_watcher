@@ -15,11 +15,20 @@ module ApplicationHelper
   end
 
   def format_variation(value)
-  	return align_right '- %' unless value
-	displayed_value = "%.2f" % value
-  	return align_right "+ #{displayed_value}%" if value > 0
-  	return align_right "- #{displayed_value.to_s[1..-1]}%" if value < 0
-  	align_right "#{displayed_value}%"
+  	return align_right ' - % ' unless value
+
+    displayed_value = "%.2f" % value
+    info            = "0%"
+
+    if value > 0
+      info  = "&nbsp;+&nbsp;#{displayed_value}%&nbsp;".html_safe
+      style = variation_positive_style
+  	elsif value < 0
+      info  = "&nbsp;-&nbsp;#{displayed_value.to_s[1..-1]}%&nbsp;".html_safe
+      style = variation_negative_style
+    end
+
+    align_right(info, style)
   end
 
   def format_integer(value)
@@ -30,10 +39,26 @@ module ApplicationHelper
 
 private
 
-  def align_right(content)
-  	span :style => 'float: right;' do
+  def align_right(content, style='')
+  	span :style => "float: right;#{style}" do
   		content
   	end
+  end
+
+  def variation_positive_style
+    "color: white; font-weight: bold; background-color: #{positive_color};"
+  end
+
+  def variation_negative_style
+    "color: white; font-weight: bold; background-color: #{negative_color};"
+  end
+
+  def positive_color
+    '#41A317'
+  end
+
+  def negative_color
+    '#C11B17'
   end
 
 end
