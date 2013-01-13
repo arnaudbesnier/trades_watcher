@@ -2,6 +2,8 @@ ActiveAdmin.register Quote do
 
 	config.sort_order = :company_id_asc
 
+    actions :index, :show
+
 	filter :company
 
 	index :download_links => false do
