@@ -23,12 +23,32 @@ class Portfolio
 		#  - ask
 
 		@symbols.each do |symbol|
-			quote      = data[symbol]
-			created_at = Time.now(); # TODO: create the WS date
+			quote = data[symbol]
+
+			variations_day     = quote.change.split(' - ')
+			variation_day_low  = variations_day.first
+			variation_day_high = variations_day.last.chop
+
+			date_elements = quote.date().split('/')
+			year          = date_elements.last
+			month         = date_elements.first
+			day           = date_elements[1]
+			time_elements = quote.time().split(':')
+			hour          = time_elements.first
+			minute        = time_elements.last[0..1]
+			created_at    = Time.new(year, month, day, hour, minute)
+
 			Quote.create({
-				:company_id => Company.find_by_symbol(symbol.split('.').first).id,
-				:value      => quote.lastTrade(),
-				:created_at => created_at
+				:company_id            => Company.find_by_symbol(symbol.split('.').first).id,
+				:value                 => quote.lastTrade(),
+				:volume                => quote.volume(),
+				:value_day_open        => quote.open(),
+				:value_day_low         => quote.dayLow(),
+				:value_day_high        => quote.dayHigh(),
+				:variation_day_current => quote.changePercent(),
+				:variation_day_low     => variation_day_low,
+				:variation_day_high    => variation_day_high,
+				:created_at            => created_at
 			})
 		end
 	end
