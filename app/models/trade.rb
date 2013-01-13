@@ -40,7 +40,7 @@ class Trade < ActiveRecord::Base
 
 	def performance
 		return nil if gain.nil?
-		"#{(gain / (price_bought * shares) * 100).to_i} %"
+		gain / (price_bought * shares) * 100
 	end
 
 private

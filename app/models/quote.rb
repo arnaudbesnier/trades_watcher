@@ -9,4 +9,8 @@ class Quote < ActiveRecord::Base
 
 	validates :company_id, :uniqueness => { :scope => :created_at }
 
+	def variation_price_current
+		(1 - 1 / (100 + variation_day_current) * 100) * value
+	end
+
 end
