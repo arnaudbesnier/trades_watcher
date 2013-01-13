@@ -3,11 +3,13 @@
 .sass-cache
 capybara-*.html
 .rspec
+.DS_Store
 /.bundle
 /vendor/bundle
 /log/*
 /tmp/*
 /db/*.sqlite3
+/db/.DS_Store
 /public/system/*
 /coverage/
 /spec/tmp/*
