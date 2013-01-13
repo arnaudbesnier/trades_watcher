@@ -8,6 +8,5 @@ if !defined? Rails::Console
 		now = Time.now
 		puts " = #{now} => Retrieve Yahoo Finance data\n\n"
 		Portfolio.new
-		puts " ===========================================\n\n"
 	end
 end
