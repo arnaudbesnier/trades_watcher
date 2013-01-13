@@ -34,12 +34,11 @@ class Trade < ActiveRecord::Base
 	end
 
 	def gain
-		return nil if price_sold.nil?
-		shares * (price_sold - price_bought) - total_fees
+		value = price_sold.nil? ? company.quotes.last.value : price_sold
+		shares * (value - price_bought) - total_fees
 	end
 
 	def performance
-		return nil if gain.nil?
 		gain / (price_bought * shares) * 100
 	end
 

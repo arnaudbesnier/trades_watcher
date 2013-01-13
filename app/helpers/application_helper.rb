@@ -14,7 +14,7 @@ module ApplicationHelper
     align_right "€ #{(formater % value).to_s}"
   end
 
-  def format_variation_price(value, decimal=2)
+  def format_variation_price(value, decimal=2, highlight=true)
     return align_right ' € - ' unless value
 
     displayed_value = "%.#{decimal}f" % value
@@ -22,16 +22,18 @@ module ApplicationHelper
 
     if value > 0
       info  = "&nbsp;€&nbsp;#{displayed_value}&nbsp;".html_safe
-      style = variation_positive_style
+      style = positive_style
     elsif value < 0
       info  = "&nbsp;€&nbsp;#{displayed_value.to_s[1..-1]}&nbsp;".html_safe
-      style = variation_negative_style
+      style = negative_style
     end
+
+    style += shadow_style unless highlight
 
     align_right(info, style)
   end
 
-  def format_variation(value)
+  def format_variation(value, highlight=true)
   	return align_right ' - % ' unless value
 
     displayed_value = '%.2f' % value
@@ -39,11 +41,13 @@ module ApplicationHelper
 
     if value > 0
       info  = "&nbsp;+&nbsp;#{displayed_value}%&nbsp;".html_safe
-      style = variation_positive_style
+      style = positive_style
   	elsif value < 0
       info  = "&nbsp;-&nbsp;#{displayed_value.to_s[1..-1]}%&nbsp;".html_safe
-      style = variation_negative_style
+      style = negative_style
     end
+
+    style += shadow_style unless highlight
 
     align_right(info, style)
   end
@@ -62,20 +66,24 @@ private
   	end
   end
 
-  def variation_positive_style
-    "color: white; font-weight: bold; background-color: #{positive_color};"
-  end
-
-  def variation_negative_style
-    "color: white; font-weight: bold; background-color: #{negative_color};"
-  end
-
   def positive_color
     '#41A317'
   end
 
   def negative_color
     '#C11B17'
+  end
+
+  def positive_style
+    "color: white; font-weight: bold; background-color: #{positive_color};"
+  end
+
+  def negative_style
+    "color: white; font-weight: bold; background-color: #{negative_color};"
+  end
+
+  def shadow_style
+    'opacity: 0.3;'
   end
 
 end

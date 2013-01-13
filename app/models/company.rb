@@ -14,4 +14,6 @@ class Company < ActiveRecord::Base
 	validates :name,   :uniqueness => true
 	validates :symbol, :uniqueness => true
 
+	has_many :quotes
+
 end

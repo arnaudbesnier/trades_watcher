@@ -20,8 +20,8 @@ ActiveAdmin.register Trade do
     	column(:price_sold)   { |trade| format_price(trade.price_sold) }
     	column(:closed_at)    { |trade| format_datetime(trade.closed_at) }
     	column(:fees)         { |trade| format_price(trade.total_fees) }
-    	column(:gains)        { |trade| format_variation_price(trade.gain)  if trade.gain }
-    	column(:performance)  { |trade| format_variation(trade.performance) if trade.gain }
+    	column(:gains)        { |trade| format_variation_price(trade.gain, 2, trade.price_sold.nil?) }
+    	column(:performance)  { |trade| format_variation(trade.performance, trade.price_sold.nil?) }
   	end
 
 end
