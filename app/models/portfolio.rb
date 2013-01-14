@@ -34,7 +34,7 @@ class Portfolio
 			month         = date_elements.first
 			day           = date_elements[1]
 			time_elements = quote.time().split(':')
-			hour          = time_elements.first
+			hour          = time_elements.first.to_i + 7 # +7 for Paris
 			minute        = time_elements.last[0..1]
 			created_at    = Time.new(year, month, day, hour, minute)
 
