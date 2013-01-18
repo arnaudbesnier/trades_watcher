@@ -9,11 +9,12 @@
 
 class Company < ActiveRecord::Base
 
-	attr_accessible :name, :symbol
+  attr_accessible :name, :symbol
 
-	validates :name,   :uniqueness => true
-	validates :symbol, :uniqueness => true
+  validates :name,   :uniqueness => true
+  validates :symbol, :uniqueness => true
 
-	has_many :quotes
+  has_many :quotes
+  has_many :trades
 
 end
