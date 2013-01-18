@@ -7,6 +7,7 @@ module ApplicationHelper
     datetime.strftime("%Y %b %d - %H:%M")
   end
 
+  # TODO: use option={} parameter
   def format_price(value, decimal=2)
     return nil unless value
     return align_right '€ - ' if value == 0
@@ -14,6 +15,7 @@ module ApplicationHelper
     align_right "€ #{(formater % value).to_s}"
   end
 
+  # TODO: use option={} parameter
   def format_variation_price(value, decimal=2, highlight=true)
     return align_right ' € - ' unless value
 
@@ -33,6 +35,7 @@ module ApplicationHelper
     align_right(info, style)
   end
 
+  # TODO: use option={} parameter
   def format_variation(value, highlight=true)
   	return align_right ' - % ' unless value
 
