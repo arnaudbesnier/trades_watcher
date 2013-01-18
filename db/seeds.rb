@@ -29,7 +29,8 @@ companies = [
 	{ :name => "L'Oreal",                             :symbol => 'OR'  },
 	{ :name => 'Iliad SA',                            :symbol => 'ILD' },
 	{ :name => 'Renault SA',                          :symbol => 'RNO' },
-	{ :name => 'Ubisoft Entertainment SA',            :symbol => 'UBI' }            
+	{ :name => 'Ubisoft Entertainment SA',            :symbol => 'UBI' },
+	{ :name => 'Orpea SA',                            :symbol => 'ORP' }             
 ]
 
 companies.each do |company|
