@@ -3,6 +3,7 @@
 
 # Admin User ============================================================
 
+AdminUser.delete_all
 AdminUser.find_or_create_by_id(1) do |user|
   # Run only in case of creation
   user.email = 'arnaudibesnier@gmail.com'
