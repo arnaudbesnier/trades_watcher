@@ -27,20 +27,31 @@ class Trade < ActiveRecord::Base
 
 	belongs_to :company
 
-	validate :company_id, :presence => true
+	validate :company_id,       :presence => true
+	validate :shares,           :presence => true
+	validate :opened_at,        :presence => true
+	validate :price_bought,     :presence => true
+	validate :commission_total, :presence => true
+	validate :taxes,            :presence => true
 
 	def total_fees
 		taxes + commission_total
 	end
 
 	def gain
-		value = price_sold.nil? ? company.quotes.last.value : price_sold
+		if price_sold
+			value = price_sold
+		else
+			return nil unless company.quotes.last
+			value = company.quotes.last.value
+		end
 		shares * (value - price_bought) - total_fees
 	end
 
 	def performance
+		return nil unless gain
 		gain / (price_bought * shares) * 100
-	end
+	end	
 
 private
 
