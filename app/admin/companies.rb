@@ -1,12 +1,20 @@
 ActiveAdmin.register Company do
+  config.sort_order = :name_asc
 
-	config.sort_order = :name_asc
+    filter :symbol
 
-	filter :symbol
+    index :download_links => false do
+      column :name
+      column(:symbol)        { |company| link_to company.symbol, admin_company_path(company) }
+      column(:current_value) { |company| company.quotes.any? ? format_price(company.quotes.last.value) : nil }
+    end
 
-	index :download_links => false do
-    	column :name
-    	column :symbol
+  	show do |company|
+	  attributes_table do
+		row :name
+		row :symbol
+		row(:current_value) { |company| company.quotes.any? ? format_price(company.quotes.last.value) : nil }
+  	  end
   	end
 
 end
