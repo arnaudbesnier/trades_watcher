@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Default config =======================================
 
 gem 'rails', '3.2.2'           # Framework
-gem 'sqlite3'                  # Database
+gem 'pg'                       # Database
 
 gem 'activeadmin'              # Admin layout
 gem 'rufus-scheduler'          # Sheduler
