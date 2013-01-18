@@ -1,0 +1,175 @@
+{
+	"trades": [{
+		"company":          "AI",
+		"shares":           4,
+		"opened_at":        "2011-02-21 09:01:29",
+		"price_bought":     95.01,
+		"commission_total": 2.50,
+		"taxes":            0
+	},{
+		"company":          "GTO",
+		"shares":           10,
+		"opened_at":        "2011-02-21 09:01:25",
+		"closed_at":        "2012-12-28 09:13:13",
+		"price_bought":     36.56,
+		"price_sold":       68.88,
+		"commission_total": 2.50,
+		"taxes":            0
+	},{
+		"company":          "BN",
+		"shares":           5,
+		"opened_at":        "2011-02-21 09:01:22",
+		"closed_at":        "2012-12-10 14:01:35",
+		"price_bought":     45.81,
+		"price_sold":       49.55,
+		"commission_total": 2.50,
+		"taxes":            0
+	},{
+		"company":          "DSY",
+		"shares":           9,
+		"opened_at":        "2011-08-15 11:34:21",
+		"price_bought":     55.74,
+		"commission_total": 2.50,
+		"taxes":            0
+	},{
+		"company":          "GLE",
+		"shares":           15,
+		"opened_at":        "2011-08-15 11:46:23",
+		"closed_at":        "2013-01-02 17:26:01",
+		"price_bought":     24.38,
+		"price_sold":       29.82,
+		"commission_total": 4.93,
+		"taxes":            0
+	},{
+		"company":          "MC",
+		"shares":           5,
+		"opened_at":        "2011-08-15 11:55:18",
+		"price_bought":     115.15,
+		"commission_total": 2.50,
+		"taxes":            0
+	},{
+		"company":          "SGO",
+		"shares":           20,
+		"opened_at":        "2012-01-17 09:04:43",
+		"price_bought":     32.55,
+		"commission_total": 2.50,
+		"taxes":            0
+	},{
+		"company":          "EAD",
+		"shares":           20,
+		"opened_at":        "2012-01-17 09:06:21",
+		"price_bought":     25.85,
+		"commission_total": 2.50,
+		"taxes":            0
+	},{
+		"company":          "OR",
+		"shares":           5,
+		"opened_at":        "2012-01-17 09:08:09",
+		"price_bought":     80.78,
+		"commission_total": 2.50,
+		"taxes":            0
+	},{
+		"company":          "FP",
+		"shares":           10,
+		"opened_at":        "2012-03-05 09:17:03",
+		"price_bought":     42.33,
+		"commission_total": 2.50,
+		"taxes":            0
+	},{
+		"company":          "BNP",
+		"shares":           15,
+		"opened_at":        "2012-03-05 09:18:22",
+		"closed_at":        "2013-01-16 09:01:35",
+		"price_bought":     37.57,
+		"price_sold":       44.02,
+		"commission_total": 5.00,
+		"taxes":            0
+	},{
+		"company":          "RI",
+		"shares":           6,
+		"opened_at":        "2012-03-05 09:20:38",
+		"closed_at":        "2013-01-15 09:00:00",
+		"price_bought":     78.39,
+		"price_sold":       88.08,
+		"commission_total": 5.00,
+		"taxes":            0
+	},{
+		"company":          "GLE",
+		"shares":           30,
+		"opened_at":        "2012-04-19 09:07:01",
+		"closed_at":        "2013-01-02 17:26:01",
+		"price_bought":     17.90,
+		"price_sold":       29.82,
+		"commission_total": 4.85,
+		"taxes":            0
+	},{
+		"company":          "BNP",
+		"shares":           18,
+		"opened_at":        "2012-05-07 10:14:46",
+		"closed_at":        "2013-01-16 09:01:35",
+		"price_bought":     28.30,
+		"price_sold":       44.02,
+		"commission_total": 5.00,
+		"taxes":            0
+	},{
+		"company":          "ILD",
+		"shares":           6,
+		"opened_at":        "2012-10-09 09:05:12",
+		"price_bought":     126.65,
+		"commission_total": 2.50,
+		"taxes":            0
+	},{
+		"company":          "RNO",
+		"shares":           15,
+		"opened_at":        "2012-10-11 09:13:18",
+		"closed_at":        "2012-12-28 09:14:50",
+		"price_bought":     34.87,
+		"price_sold":       40.97,
+		"commission_total": 5.07,
+		"taxes":            0
+	},{
+		"company":          "MC",
+		"shares":           5,
+		"opened_at":        "2012-12-10 13:58:56",
+		"price_bought":     137.05,
+		"commission_total": 2.50,
+		"taxes":            1.37
+	},{
+		"company":          "FP",
+		"shares":           20,
+		"opened_at":        "2012-12-17 09:33:35",
+		"price_bought":     38.90,
+		"commission_total": 2.50,
+		"taxes":            1.55
+	},{
+		"company":          "AI",
+		"shares":           8,
+		"opened_at":        "2013-01-07 13:46:09",
+		"price_bought":     94.19,
+		"commission_total": 2.50,
+		"taxes":            0
+	},{
+		"company":          "UBI",
+		"shares":           100,
+		"opened_at":        "2013-01-07 13:49:12",
+		"price_bought":     7.88,
+		"commission_total": 2.50,
+		"taxes":            0
+	},{
+		"company":          "GTO",
+		"shares":           15,
+		"opened_at":        "2013-01-11 09:02:08",
+		"closed_at":        "2013-01-18 15:37:03",
+		"price_bought":     66.82,
+		"price_sold":       67.00,
+		"commission_total": 10,
+		"taxes":            0
+	},{
+		"company":          "ORP",
+		"shares":           25,
+		"opened_at":        "2013-01-18 13:12:13",
+		"price_bought":     32.14,
+		"commission_total": 2.5,
+		"taxes":            0
+	}]
+}

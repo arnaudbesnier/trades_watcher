@@ -1,4 +1,4 @@
-class CreateActionModel < ActiveRecord::Migration
+class CreateCompanyModel < ActiveRecord::Migration
   def up
   	create_table :companies do |t|
   		t.string :name
