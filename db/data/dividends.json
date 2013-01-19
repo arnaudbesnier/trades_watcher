@@ -1,0 +1,123 @@
+{
+	"dividends": [{
+		"company":     "BN",
+		"shares":      5,
+		"received_at": "2011-05-13",
+		"amount":      1.30,
+		"taxes":       0.123
+	},{
+		"company":     "AI",
+		"shares":      4,
+		"received_at": "2011-05-16",
+		"amount":      2.35,
+		"taxes":       0.123
+	},{
+		"company":     "GTO",
+		"shares":      10,
+		"received_at": "2011-05-25",
+		"amount":      0.28,
+		"taxes":       0.254
+	},{
+		"company":     "MC",
+		"shares":      5,
+		"received_at": "2011-12-02",
+		"amount":      0.80,
+		"taxes":       0.135
+	},{
+		"company":     "FP",
+		"shares":      10,
+		"received_at": "2012-03-22",
+		"amount":      0.57,
+		"taxes":       0.135
+	},{
+		"company":     "MC",
+		"shares":      5,
+		"received_at": "2012-04-25",
+		"amount":      1.80,
+		"taxes":       0.135
+	},{
+		"company":     "OR",
+		"shares":      5,
+		"received_at": "2012-05-03",
+		"amount":      2.00,
+		"taxes":       0.135
+	},{
+		"company":     "BN",
+		"shares":      5,
+		"received_at": "2012-05-11",
+		"amount":      1.39,
+		"taxes":       0.135
+	},{
+		"company":     "AI",
+		"shares":      4,
+		"received_at": "2012-05-16",
+		"amount":      2.50,
+		"taxes":       0.135
+	},{
+		"company":     "GTO",
+		"shares":      10,
+		"received_at": "2012-05-31",
+		"amount":      0.31,
+		"taxes":       0.267
+	},{
+		"company":     "EAD",
+		"shares":      20,
+		"received_at": "2012-06-07",
+		"amount":      0.45,
+		"taxes":       0.264
+	},{
+		"company":     "SGO",
+		"shares":      20,
+		"received_at": "2012-06-14",
+		"amount":      1.24,
+		"taxes":       0.135
+	},{
+		"company":     "FP",
+		"shares":      10,
+		"received_at": "2012-06-21",
+		"amount":      0.57,
+		"taxes":       0.135
+	},{
+		"company":     "DSY",
+		"shares":      9,
+		"received_at": "2012-06-26",
+		"amount":      0.70,
+		"taxes":       0.135
+	},{
+		"company":     "BNP",
+		"shares":      33,
+		"received_at": "2012-06-26",
+		"amount":      1.20,
+		"taxes":       0.135
+	},{
+		"company":     "RI",
+		"shares":      6,
+		"received_at": "2012-07-05",
+		"amount":      0.72,
+		"taxes":       0.155
+	},{
+		"company":     "FP",
+		"shares":      10,
+		"received_at": "2012-09-27",
+		"amount":      0.57,
+		"taxes":       0.155
+	},{
+		"company":     "RI",
+		"shares":      6,
+		"received_at": "2012-11-19",
+		"amount":      0.86,
+		"taxes":       0.155
+	},{
+		"company":     "MC",
+		"shares":      5,
+		"received_at": "2012-12-04",
+		"amount":      1.10,
+		"taxes":       0.155
+	},{
+		"company":     "FP",
+		"shares":      10,
+		"received_at": "2012-12-20",
+		"amount":      0.59,
+		"taxes":       0.155
+	}]
+}

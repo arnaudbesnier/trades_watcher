@@ -2,9 +2,6 @@ namespace :db do
 
   desc "Create the trades in db/data/trades.json"
   task :create_trades => :environment do
-  	puts ' = Delete existing trades' 
-  	Trade.delete_all
-
   	file   = Dir.glob('db/data/trades.json').first
   	data   = File.open(file, 'rb').read
   	trades = ActiveSupport::JSON.decode(data)['trades']
