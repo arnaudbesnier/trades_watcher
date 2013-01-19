@@ -92,9 +92,6 @@ ActiveAdmin.setup do |config|
   # Admin comments allow you to add comments to any model for admin use.
   # Admin comments are enabled by default.
   #
-  # Default:
-  # config.allow_comments = true
-  #
   # You can turn them on and off for any given namespace by using a
   # namespace config block.
   #
@@ -102,6 +99,7 @@ ActiveAdmin.setup do |config|
   #   config.namespace :without_comments do |without_comments|
   #     without_comments.allow_comments = false
   #   end
+  config.allow_comments = false
 
 
   # == Controller Filters
@@ -125,5 +123,9 @@ ActiveAdmin.setup do |config|
   #   config.register_stylesheet 'my_print_stylesheet.css', :media => :print
   #
   # To load a javascript file:
-  #   config.register_javascript 'my_javascript.js'
+  config.clear_stylesheets!
+  config.register_stylesheet 'admin/active_admin.css'
+
+  config.clear_javascripts!
+  config.register_javascript 'admin/active_admin.js'
 end
