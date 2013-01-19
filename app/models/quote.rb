@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: quotes
+#
+#  id                    :integer          not null, primary key
+#  company_id            :integer
+#  value                 :decimal(, )
+#  value_day_open        :decimal(, )
+#  value_day_low         :decimal(, )
+#  value_day_high        :decimal(, )
+#  variation_day_low     :decimal(, )
+#  variation_day_high    :decimal(, )
+#  variation_day_current :decimal(, )
+#  volume                :integer
+#  created_at            :datetime
+#
+
 class Quote < ActiveRecord::Base
 
   attr_accessible :company_id, :value, :volume, :created_at,
