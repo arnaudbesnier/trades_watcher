@@ -23,4 +23,12 @@ class Dividend < ActiveRecord::Base
 
   belongs_to :company
 
+  def total_gross
+    amount * shares 
+  end
+
+  def total_net
+  	total_gross * (1 - taxes)
+  end
+
 end

@@ -2,6 +2,11 @@
 
 module ApplicationHelper
 
+  def format_date(date)
+    return nil unless date
+    date.strftime("%Y %b %d")
+  end
+
   def format_datetime(datetime)
     return nil unless datetime
     datetime.strftime("%Y %b %d - %H:%M")
