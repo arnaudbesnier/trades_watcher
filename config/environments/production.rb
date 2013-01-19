@@ -56,7 +56,7 @@ TradesWatcher::Application.configure do
     :authentication => :plain,
     :user_name      => ENV['SENDGRID_USERNAME'],
     :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => ENV['SENDGRID_DOMAIN']
+    :domain         => 'trades-watcher.herokuapp.com'
   }
   config.action_mailer.default_url_options = { :host => 'trades-watcher.herokuapp.com' }
 
