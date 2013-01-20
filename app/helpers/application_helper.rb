@@ -49,9 +49,12 @@ module ApplicationHelper
     send(wrapper, info, style)
   end
 
-  # TODO: use option={} parameter
-  def format_variation(value, highlight=true)
-  	return align_right ' - % ' unless value
+  def format_variation(value, options={})
+    right_align = options[:right_align].nil? ? true : options[:right_align]
+    highlight   = options[:highlight].nil? ? true : options[:highlight]
+    wrapper     = right_align ? 'align_right' : 'align_left'
+
+  	return send(wrapper, ' - % ') unless value
 
     displayed_value = '%.2f' % value
     info            = '0%'
@@ -66,13 +69,17 @@ module ApplicationHelper
 
     style += shadow_style unless highlight
 
-    align_right(info, style)
+    send(wrapper, info, style)
   end
 
-  def format_integer(value)
-  	return '-' unless value
+  def format_integer(value, options={})
+    right_align = options[:right_align].nil? ? true : options[:right_align]
+    wrapper     = right_align ? 'align_right' : 'align_left'
+
+  	return send(wrapper, '-') unless value
+
   	value = value.to_s.reverse.gsub(/...(?=.)/,'\& ').reverse
-  	return align_right value
+  	return send(wrapper, value)
   end
 
 private
