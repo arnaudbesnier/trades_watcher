@@ -10,9 +10,9 @@ namespace :db do
 
  	transactions.each do |transaction|
  	  Transaction.create({
- 	    :type       => transaction['type'],
- 		:amount     => transaction['amount'],
- 		:created_at => Time.zone.parse(transaction['created_at'])
+ 	    :transaction_type => transaction['type'],
+ 		:amount           => transaction['amount'],
+ 		:created_at       => Time.zone.parse(transaction['created_at'])
  	  })
  	end
   end

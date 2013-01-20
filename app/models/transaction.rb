@@ -10,16 +10,16 @@
 
 class Transaction < ActiveRecord::Base
 
-  attr_accessible :type, :amount, :created_at
+  attr_accessible :transaction_type, :amount, :created_at
 
-  validates :type,       :presence => true
-  validates :amount,     :presence => true
-  validates :created_at, :presence => true
+  validates :transaction_type, :presence => true
+  validates :amount,           :presence => true
+  validates :created_at,       :presence => true
 
   DEPOSIT  = 1
-  WITHDRAW = 2 
+  WITHDRAW = 2
 
-  TRANSACTION_TYPES = { 
+  TYPES = { 
   	DEPOSIT  => :deposit,
   	WITHDRAW => :withdraw
   }
