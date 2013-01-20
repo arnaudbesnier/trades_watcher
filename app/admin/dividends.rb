@@ -17,8 +17,8 @@ ActiveAdmin.register Dividend do
     attributes_table do
       row(:company)     { |dividend| link_to dividend.company.name, admin_company_path(dividend.company) }
       row :shares
-      row(:amount)      { |dividend| format_price(dividend.amount) }
-      row(:total_net)   { |dividend| format_variation_price(dividend.total_net) }
+      row(:amount)      { |dividend| format_price(dividend.amount, { :right_align => false }) }
+      row(:total_net)   { |dividend| format_variation_price(dividend.total_net, { :right_align => false }) }
       row(:received_at) { |dividend| format_date(dividend.received_at) }
     end
   end

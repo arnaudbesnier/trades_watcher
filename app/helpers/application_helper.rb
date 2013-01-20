@@ -12,17 +12,26 @@ module ApplicationHelper
     datetime.strftime("%Y %b %d - %H:%M")
   end
 
-  # TODO: use option={} parameter
-  def format_price(value, decimal=2)
+  def format_price(value, options={})
     return nil unless value
-    return align_right '€ - ' if value == 0
+
+    decimal     = options[:decimal] || 2
+    right_align = options[:right_align].nil? ? true : options[:right_align]
+    wrapper     = right_align ? 'align_right' : 'align_left'
+
+    return send(wrapper, '€ - ') if value == 0
+
     formater = "%.#{decimal}f"
-    align_right "€ #{(formater % value).to_s}"
+    send(wrapper, "€ #{(formater % value).to_s}")
   end
 
-  # TODO: use option={} parameter
-  def format_variation_price(value, decimal=2, highlight=true)
-    return align_right ' € - ' unless value
+  def format_variation_price(value, options={})
+    decimal     = options[:decimal] || 2
+    right_align = options[:right_align].nil? ? true : options[:right_align]
+    highlight   = options[:highlight].nil? ? true : options[:highlight]
+    wrapper     = right_align ? 'align_right' : 'align_left'
+
+    return send(wrapper, ' € - ') unless value
 
     displayed_value = "%.#{decimal}f" % value
     info            = '0'
@@ -37,7 +46,7 @@ module ApplicationHelper
 
     style += shadow_style unless highlight
 
-    align_right(info, style)
+    send(wrapper, info, style)
   end
 
   # TODO: use option={} parameter
@@ -67,6 +76,12 @@ module ApplicationHelper
   end
 
 private
+
+  def align_left(content, style='')
+    span :style => "#{style}" do
+      content
+    end
+  end
 
   def align_right(content, style='')
   	span :style => "float: right;#{style}" do
