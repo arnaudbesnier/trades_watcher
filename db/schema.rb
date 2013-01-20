@@ -86,9 +86,9 @@ ActiveRecord::Schema.define(:version => 20130119203050) do
   end
 
   create_table "transactions", :force => true do |t|
-    t.date    "created_at"
-    t.integer "type"
+    t.integer "transaction_type"
     t.decimal "amount"
+    t.date    "created_at"
   end
 
 end
