@@ -1,0 +1,51 @@
+{
+	"companies": [{
+		"name":   "Air Liquide",
+		"symbol": "AI"
+	},{
+		"name":   "Groupe Danone SA",
+		"symbol": "BN"
+	},{
+		"name":   "BNP Paribas SA",
+		"symbol": "BNP"
+	},{
+		"name":   "Dassault Systemes S.A.",
+		"symbol": "DSY"
+	},{
+		"name":   "EADS NV",
+		"symbol": "EAD"
+	},{
+		"name":   "Total S.A.",
+		"symbol": "FP"
+	},{
+		"name":   "Societe Generale SA",
+		"symbol": "GLE"
+	},{
+		"name":   "Gemalto NV",
+		"symbol": "GTO"
+	},{
+		"name":   "Iliad SA",
+		"symbol": "ILD"
+	},{
+		"name":   "LVMH Moet Hennessy Louis Vuitton SA",
+		"symbol": "MC"
+	},{
+		"name":   "L'Oreal",
+		"symbol": "OR"
+	},{
+		"name":   "Orpea SA",
+		"symbol": "ORP"
+	},{
+		"name":   "Pernod Ricard SA",
+		"symbol": "RI"
+	},{
+		"name":   "Renault SA",
+		"symbol": "RNO"
+	},{
+		"name":   "Compagnie de Saint Gobain SA",
+		"symbol": "SGO"
+	},{
+		"name":   "Ubisoft Entertainment SA",
+		"symbol": "UBI"
+	}]
+}
