@@ -11,7 +11,7 @@ namespace :db do
  	companies.each do |company|
  	  Company.create({
  	    :name   => company['name'],
- 		:symbol => company['shares']
+ 		:symbol => company['symbol']
  	  })
  	end
   end
