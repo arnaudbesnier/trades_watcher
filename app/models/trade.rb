@@ -34,6 +34,8 @@ class Trade < ActiveRecord::Base
   validate :commission_total, :presence => true
   validate :taxes,            :presence => true
 
+  validates :company_id, :uniqueness => { :scope => :opened_at }
+
   def total_fees
     taxes + commission_total
   end

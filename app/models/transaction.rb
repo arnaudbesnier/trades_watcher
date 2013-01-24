@@ -16,6 +16,8 @@ class Transaction < ActiveRecord::Base
   validates :amount,           :presence => true
   validates :created_at,       :presence => true
 
+  validates :amount, :uniqueness => { :scope => :created_at }
+
   DEPOSIT  = 1
   WITHDRAW = 2
 
