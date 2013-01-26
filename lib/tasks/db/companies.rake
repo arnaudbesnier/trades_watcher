@@ -9,9 +9,12 @@ namespace :db do
   	puts " = Create companies in #{file}"
 
  	companies.each do |company|
+      sector = Sector.find_or_create_by_name(company['sector'])
+
  	  Company.create({
- 	    :name   => company['name'],
- 		:symbol => company['symbol']
+ 	    :name      => company['name'],
+ 		:symbol    => company['symbol'],
+ 		:sector_id => sector.id
  	  })
  	end
   end
