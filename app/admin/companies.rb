@@ -7,7 +7,7 @@ ActiveAdmin.register Company do
   index :download_links => false do
     column :name
     column(:symbol)        { |company| link_to company.symbol, admin_company_path(company) }
-    column(:sector)        { |company| company.sector.name.upcase }
+    column(:sector)        { |company| company.sector.name.upcase if company.sector }
     column(:current_value) { |company| company.quotes.any? ? format_price(company.quotes.last.value) : nil }
   end
 
