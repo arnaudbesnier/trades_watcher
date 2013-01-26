@@ -1,5 +1,7 @@
 ActiveAdmin.register Dividend do
 
+  menu :parent => 'Transactions'
+
   config.sort_order = :received_at_desc
 
   filter :company_id
