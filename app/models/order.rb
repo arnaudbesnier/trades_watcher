@@ -24,11 +24,13 @@ class Order < ActiveRecord::Base
   BUY            = 1
   SELL           = 2
   SELL_STOP_LOSS = 3
+  SELL_STOP_GAIN = 4
 
   TYPES = { 
   	BUY            => :buy,
   	SELL           => :sell,
-  	SELL_STOP_LOSS => :sell_stop_loss 
+  	SELL_STOP_LOSS => :sell_stop_loss,
+  	SELL_STOP_GAIN => :sell_stop_gain
   }
 
 end
