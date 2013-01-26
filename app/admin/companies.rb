@@ -15,7 +15,7 @@ ActiveAdmin.register Company do
     attributes_table do
       row :name
       row :symbol
-      row(:sector)        { |company| company.sector.name.upcase }
+      row(:sector)        { |company| company.sector.name.upcase if company.sector }
       row(:current_value) { |company| company.quotes.any? ? format_price(company.quotes.last.value) : nil }
     end
   end
