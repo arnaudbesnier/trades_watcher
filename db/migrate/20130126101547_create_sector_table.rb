@@ -3,6 +3,7 @@ class CreateSectorTable < ActiveRecord::Migration
     create_table :sectors do |t|
       t.string :name
     end
+    add_column :companies, :sector_id, :integer
   end
 
   def down
