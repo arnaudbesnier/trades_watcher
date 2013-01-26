@@ -2,10 +2,10 @@
 #
 # Table name: transactions
 #
-#  id         :integer          not null, primary key
-#  created_at :date
-#  type       :integer
-#  amount     :decimal(, )
+#  id               :integer          not null, primary key
+#  transaction_type :integer
+#  amount           :decimal(, )
+#  created_at       :date
 #
 
 class Transaction < ActiveRecord::Base
