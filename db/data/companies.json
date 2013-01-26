@@ -1,51 +1,67 @@
 {
 	"companies": [{
 		"name":   "Air Liquide",
-		"symbol": "AI"
+		"symbol": "AI",
+		"sector": "chemistry"
 	},{
 		"name":   "Groupe Danone SA",
-		"symbol": "BN"
+		"symbol": "BN",
+		"sector": "Consumer goods"
 	},{
 		"name":   "BNP Paribas SA",
-		"symbol": "BNP"
+		"symbol": "BNP",
+		"sector": "Financial Institutions"
 	},{
 		"name":   "Dassault Systemes S.A.",
-		"symbol": "DSY"
+		"symbol": "DSY",
+		"sector": "Technology"
 	},{
 		"name":   "EADS NV",
-		"symbol": "EAD"
+		"symbol": "EAD",
+		"sector": "Aviation"
 	},{
 		"name":   "Total S.A.",
-		"symbol": "FP"
+		"symbol": "FP",
+		"sector": "Oil"
 	},{
 		"name":   "Societe Generale SA",
-		"symbol": "GLE"
+		"symbol": "GLE",
+		"sector": "Financial Institutions"
 	},{
 		"name":   "Gemalto NV",
-		"symbol": "GTO"
+		"symbol": "GTO",
+		"sector": "Information Technology"
 	},{
 		"name":   "Iliad SA",
-		"symbol": "ILD"
+		"symbol": "ILD",
+		"sector": "Information Technology"
 	},{
 		"name":   "LVMH Moet Hennessy Louis Vuitton SA",
-		"symbol": "MC"
+		"symbol": "MC",
+		"sector": "Luxury"
 	},{
 		"name":   "L'Oreal",
-		"symbol": "OR"
+		"symbol": "OR",
+		"sector": "Beauty"
 	},{
 		"name":   "Orpea SA",
-		"symbol": "ORP"
+		"symbol": "ORP",
+		"sector": "Health"
 	},{
 		"name":   "Pernod Ricard SA",
-		"symbol": "RI"
+		"symbol": "RI",
+		"sector": "Consumer goods"
 	},{
 		"name":   "Renault SA",
-		"symbol": "RNO"
+		"symbol": "RNO",
+		"sector": "Automobile"
 	},{
 		"name":   "Compagnie de Saint Gobain SA",
-		"symbol": "SGO"
+		"symbol": "SGO",
+		"sector": "Manufacturing"
 	},{
 		"name":   "Ubisoft Entertainment SA",
-		"symbol": "UBI"
+		"symbol": "UBI",
+		"sector": "Video Games"
 	}]
 }
