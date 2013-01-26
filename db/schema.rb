@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(:version => 20130126144417) do
     t.decimal  "commission"
     t.decimal  "taxes"
     t.datetime "created_at"
+    t.boolean  "executed"
+    t.datetime "executed_at"
   end
 
   create_table "quotes", :force => true do |t|

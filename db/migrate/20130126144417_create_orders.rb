@@ -8,6 +8,8 @@ class CreateOrders < ActiveRecord::Migration
       t.decimal  :commission
       t.decimal  :taxes
       t.datetime :created_at
+      t.boolean  :executed
+      t.datetime :executed_at
     end
   end
 end
