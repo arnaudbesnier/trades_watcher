@@ -1,4 +1,6 @@
 ActiveAdmin.register Company do
+  
+  menu :priority => 2
 
   config.sort_order = :name_asc
 

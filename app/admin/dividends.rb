@@ -1,6 +1,6 @@
 ActiveAdmin.register Dividend do
 
-  menu :parent => 'Transactions'
+  menu :parent => 'Orders'
 
   config.sort_order = :received_at_desc
 

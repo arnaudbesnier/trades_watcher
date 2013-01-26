@@ -1,5 +1,7 @@
 ActiveAdmin.register Transaction do
 
+  menu :parent => 'Orders'
+
   config.sort_order = :created_at_desc
 
   filter :created_at

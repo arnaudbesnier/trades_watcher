@@ -2,6 +2,8 @@ include ApplicationHelper
 
 ActiveAdmin.register Trade do
 
+  menu :priority => 2
+
   config.sort_order = :opened_at_desc
 
   scope :all
