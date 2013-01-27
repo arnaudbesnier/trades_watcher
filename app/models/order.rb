@@ -25,11 +25,25 @@ class Order < ActiveRecord::Base
   SELL_STOP_LOSS = 3
   SELL_STOP_GAIN = 4
 
-  TYPES = { 
+  TYPE_NAMES = { 
   	BUY            => :buy,
   	SELL           => :sell,
   	SELL_STOP_LOSS => :sell_stop_loss,
   	SELL_STOP_GAIN => :sell_stop_gain
   }
+
+  TYPE_IDS = TYPE_NAMES.invert
+
+  belongs_to :company
+
+  scope :executed, where(:executed => true)
+  scope :pending,  where(:executed => false)
+
+  validates :company_id, :presence => true
+  validates :shares,     :presence => true
+  validates :price,      :presence => true
+  validates :order_type, :presence => true
+  validates :created_at, :presence => true
+  validates :executed,   :presence => true
 
 end
