@@ -18,8 +18,7 @@ class Order < ActiveRecord::Base
 
   attr_accessible :company_id, :shares, :price, :order_type,
                   :commission, :taxes,
-                  :created_at, :executed, :created_at
-
+                  :created_at, :executed, :executed_at
 
   BUY            = 1
   SELL           = 2
