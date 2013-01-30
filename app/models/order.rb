@@ -25,11 +25,18 @@ class Order < ActiveRecord::Base
   SELL_STOP_LOSS = 3
   SELL_STOP_GAIN = 4
 
-  TYPE_NAMES = { 
+  TYPE_NAMES = {
   	BUY            => :buy,
   	SELL           => :sell,
   	SELL_STOP_LOSS => :sell_stop_loss,
   	SELL_STOP_GAIN => :sell_stop_gain
+  }
+
+  TYPE_COLORS = {
+    BUY            => '#4C787E',
+    SELL           => '#91FC17',
+    SELL_STOP_LOSS => '#8217FC',
+    SELL_STOP_GAIN => '#FDD017'
   }
 
   TYPE_IDS = TYPE_NAMES.invert

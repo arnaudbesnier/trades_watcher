@@ -12,6 +12,12 @@ module ApplicationHelper
     datetime.strftime("%Y %b %d - %H:%M")
   end
 
+  def format_status(value, options={})
+    return nil unless value
+
+    align_left "&nbsp;#{value.to_s.gsub(/_/, ' ')}&nbsp;".html_safe, "color: #FFFFFF; font-weight: bold; background-color: #{options[:color]};"
+  end
+
   def format_price(value, options={})
     return nil unless value
 
