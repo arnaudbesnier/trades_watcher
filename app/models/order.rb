@@ -51,6 +51,8 @@ class Order < ActiveRecord::Base
   validates :price,      :presence => true
   validates :order_type, :presence => true
   validates :created_at, :presence => true
-  validates :executed,   :presence => true
+  validates :executed,   :inclusion => { :in => [true, false] }
+
+  validates :company_id, :uniqueness => { :scope => [:order_type, :created_at] }
 
 end
