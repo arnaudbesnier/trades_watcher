@@ -13,8 +13,10 @@ ActiveAdmin.register_page "Performances" do
           th { 'STOCK' }
           th { 'LIQUIDITY' }
           th { 'VALORIZATION' }
+          th { 'PERFORMANCE' }
         end
         tr do
+          th :style => cell_style do end
           th :style => cell_style do end
           th :style => cell_style do end
           th :style => cell_style do end
@@ -30,8 +32,8 @@ ActiveAdmin.register_page "Performances" do
         tr do
           th { 'DAY' }
           th { 'GAIN' }
-          th { 'PERFORMANCE' }
           th { 'VALORIZATION' }
+          th { 'PERFORMANCE' }
         end
         0.upto(5) do |day|
           tr do
@@ -52,8 +54,8 @@ ActiveAdmin.register_page "Performances" do
         tr do
           th { 'WEEK' }
           th { 'GAIN' }
-          th { 'PERFORMANCE' }
           th { 'VALORIZATION' }
+          th { 'PERFORMANCE' }
         end
         0.upto(5) do |week|
           tr do
