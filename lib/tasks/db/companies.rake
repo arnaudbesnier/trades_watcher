@@ -14,7 +14,8 @@ namespace :db do
  	  Company.create({
  	    :name      => company['name'],
  		:symbol    => company['symbol'],
- 		:sector_id => sector.id
+ 		:sector_id => sector.id,
+ 		:index     => company['index']
  	  })
  	end
   end

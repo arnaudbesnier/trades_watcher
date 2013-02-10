@@ -6,11 +6,12 @@
 #  name      :string(255)
 #  symbol    :string(255)
 #  sector_id :integer
+#  index     :string(255)
 #
 
 class Company < ActiveRecord::Base
 
-  attr_accessible :name, :symbol, :sector_id
+  attr_accessible :name, :symbol, :sector_id, :index
 
   validates :name,   :uniqueness => true
   validates :symbol, :uniqueness => true

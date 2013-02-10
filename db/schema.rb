@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131224039) do
+ActiveRecord::Schema.define(:version => 20130210213539) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130131224039) do
     t.string  "name"
     t.string  "symbol"
     t.integer "sector_id"
+    t.string  "index"
   end
 
   create_table "dividends", :force => true do |t|
