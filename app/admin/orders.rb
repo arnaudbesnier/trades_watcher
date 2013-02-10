@@ -2,7 +2,7 @@ ActiveAdmin.register Order do
 
   config.sort_order = :executed_at_desc
 
-  filter :order_type
+  filter :order_type, :as => :select, :collection => Order::TYPE_IDS
   filter :company_id
   filter :created_at
 

@@ -7,7 +7,7 @@ ActiveAdmin.register Trade do
   config.sort_order = :updated_at_desc
 
   scope :all
-  scope :opened
+  scope :opened, :default => true
   scope :closed
 
   filter :company
