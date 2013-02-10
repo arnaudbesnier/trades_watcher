@@ -2,57 +2,59 @@
 #
 # Table name: trades
 #
-#  id               :integer          not null, primary key
-#  price_bought     :decimal(, )
-#  price_sold       :decimal(, )
-#  shares           :integer
-#  opened_at        :datetime
-#  closed_at        :datetime
-#  commission_total :decimal(, )
-#  taxes            :decimal(, )
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  company_id       :integer
+#  id             :integer          not null, primary key
+#  shares         :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  company_id     :integer
+#  order_open_id  :integer
+#  order_close_id :integer
 #
 
 class Trade < ActiveRecord::Base
 
   attr_accessible :company_id, :shares,
-                  :opened_at, :closed_at,
-                  :price_bought, :price_sold,
-                  :commission_total, :taxes
+                  :order_open_id, :order_close_id
 
-  scope :opened, where('closed_at IS NULL') 
-  scope :closed, where('closed_at IS NOT NULL')
+  scope :opened, where('order_close_id IS NULL') 
+  scope :closed, where('order_close_id IS NOT NULL')
 
   belongs_to :company
+  belongs_to :order_open,  :class_name => 'Order'
+  belongs_to :order_close, :class_name => 'Order'
 
-  validate :company_id,       :presence => true
-  validate :shares,           :presence => true
-  validate :opened_at,        :presence => true
-  validate :price_bought,     :presence => true
-  validate :commission_total, :presence => true
-  validate :taxes,            :presence => true
+  validate :company_id,    :presence => true
+  validate :shares,        :presence => true
+  validate :order_open_id, :presence => true
 
-  validates :company_id, :uniqueness => { :scope => :opened_at }
+  #validates :company_id, :uniqueness => { :scope => [:order_open_id, :order_close_id] }
+
+  def sold_value
+    return nil unless order_close
+    order_close.value * shares / order_close.shares
+  end
 
   def total_fees
-    taxes + commission_total
+    taxes_total      =  order_open.taxes
+    taxes_total      += order_close.taxes if order_close
+    commission_total =  order_open.commission
+    commission_total += (order_close.commission * shares) / order_close.shares if order_close
+    taxes_total + commission_total
   end
 
   def gain
-    if price_sold
-      value = price_sold
+    if order_close
+      value = order_close.price
     else
       return nil unless company.quotes.last
       value = company.quotes.last.value
     end
-    shares * (value - price_bought) - total_fees
+    shares * (value - order_open.price) - total_fees
   end
 
   def performance
     return nil unless gain
-    gain / (price_bought * shares) * 100
+    gain / (order_open.price * shares) * 100
   end
 
 private
