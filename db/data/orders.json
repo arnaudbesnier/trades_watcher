@@ -244,10 +244,11 @@
 		"shares":      9,
 		"order_type":  "sell_stop_loss",
 		"price":       81.10,
-		"commission":  0,
+		"commission":  2.52,
 		"taxes":       0,
 		"created_at":  "2013-01-07 23:28:36",
-		"executed":    false
+		"executed":    true,
+		"executed_at": "2013-02-06 14:13:37"
 	},{
 		"company":     "EAD",
 		"shares":      20,
@@ -272,10 +273,11 @@
 		"shares":      10,
 		"order_type":  "sell_stop_loss",
 		"price":       136.00,
-		"commission":  0,
+		"commission":  5,
 		"taxes":       0,
 		"created_at":  "2013-01-14 23:40:19",
-		"executed":    false
+		"executed":    true,
+		"executed_at": "2013-02-01 09:03:11"
 	},{
 		"company":     "RI",
 		"shares":      6,
