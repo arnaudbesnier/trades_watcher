@@ -20,4 +20,8 @@ class Company < ActiveRecord::Base
   has_many :quotes
   has_many :trades
 
+  def has_opened_trade?
+    Trade.opened.where(:company_id => self).any?
+  end
+
 end
