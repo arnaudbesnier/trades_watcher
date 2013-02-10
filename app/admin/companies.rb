@@ -6,6 +6,10 @@ ActiveAdmin.register Company do
 
   filter :symbol
 
+  scope :portfolio
+  scope 'CAC40'
+  scope 'SBF120'
+
   index :download_links => false do
     column :name
     column(:symbol)        { |company| link_to company.symbol, admin_company_path(company) }
