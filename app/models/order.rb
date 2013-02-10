@@ -16,10 +16,6 @@
 
 class Order < ActiveRecord::Base
 
-  attr_accessible :company_id, :shares, :price, :order_type,
-                  :commission, :taxes,
-                  :created_at, :executed, :executed_at
-
   BUY            = 1
   SELL           = 2
   SELL_STOP_LOSS = 3
@@ -41,10 +37,16 @@ class Order < ActiveRecord::Base
 
   TYPE_IDS = TYPE_NAMES.invert
 
+  attr_accessible :company_id, :shares, :price, :order_type,
+                  :commission, :taxes,
+                  :created_at, :executed, :executed_at
+
   belongs_to :company
 
   scope :executed, where(:executed => true)
   scope :pending,  where(:executed => false)
+  scope :buy,      where(:order_type => [BUY])
+  scope :sell,     where(:order_type => [SELL, SELL_STOP_LOSS, SELL_STOP_GAIN])
 
   validates :company_id, :presence => true
   validates :shares,     :presence => true
@@ -55,4 +57,42 @@ class Order < ActiveRecord::Base
 
   validates :company_id, :uniqueness => { :scope => [:order_type, :created_at] }
 
+  after_create :create_trade,  :if => :buy_order
+  after_save   :update_trades, :if => :sell_order
+
+  def value
+    shares * price
+  end
+
+private
+
+  def buy_order
+    [BUY].include? order_type 
+  end
+
+  def sell_order
+    [SELL, SELL_STOP_LOSS, SELL_STOP_GAIN].include?(order_type) && executed
+  end
+
+  def create_trade
+    Trade.create({
+      :company_id    => company_id,
+      :shares        => shares,
+      :order_open_id => id
+    })
+  end
+
+  def update_trades
+    shares_sold = shares
+
+    Trade.opened.where(:company_id => company_id).order('created_at ASC').each do |trade|
+      if shares_sold > 0
+        trade.update_attributes({ :order_close_id => id })
+        shares_sold -= trade.shares
+        # TODO : handle trades that are not fully closed by creating a new clone trade
+      else
+        return
+      end
+    end
+  end
 end
