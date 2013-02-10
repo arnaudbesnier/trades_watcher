@@ -1,5 +1,7 @@
 ActiveAdmin.register Order do
 
+  config.sort_order = :executed_at_desc
+
   filter :order_type
   filter :company_id
   filter :created_at
@@ -14,7 +16,7 @@ ActiveAdmin.register Order do
     column(:price)       { |order| format_price(order.price) }
     column(:type)        { |order| format_status(Order::TYPE_NAMES[order.order_type], { :color => Order::TYPE_COLORS[order.order_type] }) }
     column(:commission)  { |order| format_price(order.commission) }
-    column(:taxes)       { |order| format_price(order.taxes) }
+    column(:taxes)       { |order| format_price(order.taxes) if order.order_type == Order::BUY }
     column(:created_at)  { |order| link_to format_datetime(order.created_at), admin_order_path(order.id) }
     column(:executed_at) { |order| link_to format_datetime(order.executed_at), admin_order_path(order.id) if order.executed }
   end
