@@ -2,66 +2,92 @@
 	"companies": [{
 		"name":   "Air Liquide",
 		"symbol": "AI",
-		"sector": "chemistry"
+		"sector": "chemistry",
+		"index":  "CAC40"
 	},{
 		"name":   "Groupe Danone SA",
 		"symbol": "BN",
-		"sector": "Consumer goods"
+		"sector": "Consumer goods",
+		"index":  "CAC40"
 	},{
 		"name":   "BNP Paribas SA",
 		"symbol": "BNP",
-		"sector": "Financial Institutions"
+		"sector": "Financial Institutions",
+		"index":  "CAC40"
+	},{
+		"name":   "Crédit Agricole SA",
+		"symbol": "ACA",
+		"sector": "Financial Institutions",
+		"index":  "CAC40"
 	},{
 		"name":   "Dassault Systemes S.A.",
 		"symbol": "DSY",
-		"sector": "Technology"
+		"sector": "Technology",
+		"index":  "SBF120"
 	},{
 		"name":   "EADS NV",
 		"symbol": "EAD",
-		"sector": "Aeronautics"
+		"sector": "Aeronautics",
+		"index":  "CAC40"
+	},{
+		"name":   "Legrand SA",
+		"symbol": "LR",
+		"sector": "Manufacturing",
+		"index":  "CAC40"
 	},{
 		"name":   "Total S.A.",
 		"symbol": "FP",
-		"sector": "Oil"
+		"sector": "Oil",
+		"index":  "CAC40"
 	},{
 		"name":   "Societe Generale SA",
 		"symbol": "GLE",
-		"sector": "Financial Institutions"
+		"sector": "Financial Institutions",
+		"index":  "CAC40"
 	},{
 		"name":   "Gemalto NV",
 		"symbol": "GTO",
-		"sector": "Information Technology"
+		"sector": "Information Technology",
+		"index":  "CAC40"
 	},{
 		"name":   "Iliad SA",
 		"symbol": "ILD",
-		"sector": "Information Technology"
+		"sector": "Information Technology",
+		"index":  "SBF120"
 	},{
 		"name":   "LVMH Moet Hennessy Louis Vuitton SA",
 		"symbol": "MC",
-		"sector": "Luxury"
+		"sector": "Luxury",
+		"index":  "CAC40"
 	},{
 		"name":   "L'Oreal",
 		"symbol": "OR",
-		"sector": "Beauty"
+		"sector": "Beauty",
+		"index":  "CAC40"
 	},{
 		"name":   "Orpea SA",
 		"symbol": "ORP",
-		"sector": "Health"
+		"sector": "Health",
+		"index":  "SBF120"
 	},{
 		"name":   "Pernod Ricard SA",
 		"symbol": "RI",
-		"sector": "Consumer goods"
+		"sector": "Consumer goods",
+		"index":  "CAC40"
 	},{
 		"name":   "Renault SA",
 		"symbol": "RNO",
-		"sector": "Automobile"
+		"sector": "Automobile",
+		"index":  "CAC40"
 	},{
 		"name":   "Compagnie de Saint Gobain SA",
 		"symbol": "SGO",
-		"sector": "Manufacturing"
+		"sector": "Manufacturing",
+		"index":  "CAC40"
 	},{
 		"name":   "Ubisoft Entertainment SA",
 		"symbol": "UBI",
-		"sector": "Video Games"
+		"sector": "Video Games",
+		"index":  "SBF120"
 	}]
 }
