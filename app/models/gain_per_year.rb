@@ -1,6 +1,6 @@
 class GainPerYear
 
-  attr_reader :year, :deposits, :trade_gains, :dividends,
+  attr_reader :year, :deposits, :trade_gains, :dividends, :closings,
   			  :deposits_total, :trade_gains_total, :dividends_total
 
   def initialize year
@@ -18,6 +18,7 @@ class GainPerYear
 
   	@dividends, @trade_gains, @deposits                   = 0, 0, 0
   	@dividends_total, @trade_gains_total, @deposits_total = 0, 0, 0
+  	@closings = trade_gains_year.count
 
   	dividendes_year.each  { |dividend| @dividends   += dividend.total_net }
   	trade_gains_year.each { |trade|    @trade_gains += trade.gain }
@@ -28,7 +29,7 @@ class GainPerYear
   	deposits_total.each    { |deposit|  @deposits_total    += deposit.amount }
   end
 
-  def value
+  def valorization
   	@deposits_total + @dividends_total + @trade_gains_total
   end
 

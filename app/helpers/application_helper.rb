@@ -37,7 +37,7 @@ module ApplicationHelper
     highlight   = options[:highlight].nil? ? true : options[:highlight]
     wrapper     = right_align ? 'align_right' : 'align_left'
 
-    return send(wrapper, ' € - ') unless value
+    return send(wrapper, ' € - ') unless value && value != 0
 
     displayed_value = "%.#{decimal}f" % value
     info            = '0'
