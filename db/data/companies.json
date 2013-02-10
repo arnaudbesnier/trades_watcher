@@ -1,63 +1,108 @@
 {
 	"companies": [{
+		"name":   "Accord",
+		"symbol": "AC",
+		"sector": "Tourism",
+		"index":  "CAC40"
+	},{
 		"name":   "Air Liquide",
 		"symbol": "AI",
-		"sector": "chemistry",
+		"sector": "Chemistry",
 		"index":  "CAC40"
 	},{
-		"name":   "Groupe Danone SA",
-		"symbol": "BN",
-		"sector": "Consumer goods",
+		"name":   "Alstom",
+		"symbol": "ALO",
+		"sector": "Manufacturing",
 		"index":  "CAC40"
 	},{
-		"name":   "BNP Paribas SA",
+		"name":   "ArcelorMittal",
+		"symbol": "MT",
+		"sector": "Manufacturing",
+		"index":  "CAC40"
+	},{
+		"name":   "AXA",
+		"symbol": "CS",
+		"sector": "Financial Institutions",
+		"index":  "CAC40"
+	},{
+		"name":   "BNP Paribas",
 		"symbol": "BNP",
 		"sector": "Financial Institutions",
 		"index":  "CAC40"
 	},{
-		"name":   "Crédit Agricole SA",
+		"name":   "Bouygues",
+		"symbol": "EN",
+		"sector": "Manufacturing",
+		"index":  "CAC40"
+	},{
+		"name":   "Cap Gemini",
+		"symbol": "CAP",
+		"sector": "Information Technology",
+		"index":  "CAC40"
+	},{
+		"name":   "Carrefour",
+		"symbol": "CA",
+		"sector": "Consumer goods",
+		"index":  "CAC40"
+	},{
+		"name":   "Crédit Agricole",
 		"symbol": "ACA",
 		"sector": "Financial Institutions",
 		"index":  "CAC40"
 	},{
-		"name":   "Dassault Systemes S.A.",
+		"name":   "Danone",
+		"symbol": "BN",
+		"sector": "Consumer goods",
+		"index":  "CAC40"
+	},{
+		"name":   "Dassault Systemes",
 		"symbol": "DSY",
 		"sector": "Technology",
 		"index":  "SBF120"
 	},{
-		"name":   "EADS NV",
+		"name":   "EADS",
 		"symbol": "EAD",
 		"sector": "Aeronautics",
 		"index":  "CAC40"
 	},{
-		"name":   "Legrand SA",
-		"symbol": "LR",
-		"sector": "Manufacturing",
+		"name":   "EDF",
+		"symbol": "EDF",
+		"sector": "Energy",
 		"index":  "CAC40"
 	},{
-		"name":   "Total S.A.",
-		"symbol": "FP",
-		"sector": "Oil",
+		"name":   "Essilor International",
+		"symbol": "EI",
+		"sector": "Health",
 		"index":  "CAC40"
 	},{
-		"name":   "Societe Generale SA",
-		"symbol": "GLE",
-		"sector": "Financial Institutions",
+		"name":   "France Telecom",
+		"symbol": "FTE",
+		"sector": "Telecom",
 		"index":  "CAC40"
 	},{
-		"name":   "Gemalto NV",
+		"name":   "GDF Suez",
+		"symbol": "GSZ",
+		"sector": "Energy",
+		"index":  "CAC40"
+	},{
+		"name":   "Gemalto",
 		"symbol": "GTO",
 		"sector": "Information Technology",
 		"index":  "CAC40"
 	},{
-		"name":   "Iliad SA",
+		"name":   "Iliad",
 		"symbol": "ILD",
 		"sector": "Information Technology",
 		"index":  "SBF120"
 	},{
-		"name":   "LVMH Moet Hennessy Louis Vuitton SA",
-		"symbol": "MC",
-		"sector": "Luxury",
+		"name":   "Lafarge",
+		"symbol": "LG",
+		"sector": "Manufacturing",
+		"index":  "CAC40"
+	},{
+		"name":   "Legrand",
+		"symbol": "LR",
+		"sector": "Manufacturing",
 		"index":  "CAC40"
 	},{
 		"name":   "L'Oreal",
@@ -65,29 +110,114 @@
 		"sector": "Beauty",
 		"index":  "CAC40"
 	},{
-		"name":   "Orpea SA",
+		"name":   "LVMH",
+		"symbol": "MC",
+		"sector": "Luxury",
+		"index":  "CAC40"
+	},{
+		"name":   "Michelin",
+		"symbol": "ML",
+		"sector": "Consumer goods",
+		"index":  "CAC40"
+	},{
+		"name":   "Orpea",
 		"symbol": "ORP",
 		"sector": "Health",
 		"index":  "SBF120"
 	},{
-		"name":   "Pernod Ricard SA",
+		"name":   "Pernod Ricard",
 		"symbol": "RI",
 		"sector": "Consumer goods",
 		"index":  "CAC40"
 	},{
-		"name":   "Renault SA",
+		"name":   "PPR",
+		"symbol": "PP",
+		"sector": "Consumer goods",
+		"index":  "CAC40"
+	},{
+		"name":   "Publicis Groupe",
+		"symbol": "PUB",
+		"sector": "Consumer goods",
+		"index":  "CAC40"
+	},{
+		"name":   "Renault",
 		"symbol": "RNO",
 		"sector": "Automobile",
 		"index":  "CAC40"
 	},{
-		"name":   "Compagnie de Saint Gobain SA",
+		"name":   "Safran",
+		"symbol": "SAF",
+		"sector": "Manufacturing",
+		"index":  "CAC40"
+	},{
+		"name":   "Saint-Gobain",
 		"symbol": "SGO",
 		"sector": "Manufacturing",
 		"index":  "CAC40"
 	},{
-		"name":   "Ubisoft Entertainment SA",
+		"name":   "Sanofi",
+		"symbol": "SAN",
+		"sector": "Health",
+		"index":  "CAC40"
+	},{
+		"name":   "Schneider Electric",
+		"symbol": "SU",
+		"sector": "Manufacturing",
+		"index":  "CAC40"
+	},{
+		"name":   "Societe Generale",
+		"symbol": "GLE",
+		"sector": "Financial Institutions",
+		"index":  "CAC40"
+	},{
+		"name":   "Solvay",
+		"symbol": "SOLB",
+		"sector": "Materials",
+		"index":  "CAC40"
+	},{
+		"name":   "STMicroelectronics",
+		"symbol": "STM",
+		"sector": "Information Technology",
+		"index":  "CAC40"
+	},{
+		"name":   "Technip",
+		"symbol": "TEC",
+		"sector": "Oil",
+		"index":  "CAC40"
+	},{
+		"name":   "Total",
+		"symbol": "FP",
+		"sector": "Oil",
+		"index":  "CAC40"
+	},{
+		"name":   "Ubisoft Entertainment",
 		"symbol": "UBI",
 		"sector": "Video Games",
 		"index":  "SBF120"
+	},{
+		"name":   "Unibail-Rodamco",
+		"symbol": "UL",
+		"sector": "Financial Institutions",
+		"index":  "CAC40"
+	},{
+		"name":   "Vallourec",
+		"symbol": "VK",
+		"sector": "Manufacturing",
+		"index":  "CAC40"
+	},{
+		"name":   "Veolia Environnement",
+		"symbol": "VIE",
+		"sector": "Energy",
+		"index":  "CAC40"
+	},{
+		"name":   "Vinci",
+		"symbol": "DG",
+		"sector": "Manufacturing",
+		"index":  "CAC40"
+	},{
+		"name":   "Vivendi",
+		"symbol": "VIV",
+		"sector": "Consumer goods",
+		"index":  "CAC40"
 	}]
 }
