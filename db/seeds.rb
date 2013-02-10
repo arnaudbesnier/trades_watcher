@@ -17,5 +17,5 @@
 
 Rake::Task["db:create_companies"].execute
 Rake::Task["db:create_transactions"].execute
-Rake::Task["db:create_trades"].execute
+Rake::Task["db:create_orders"].execute
 Rake::Task["db:create_dividends"].execute
