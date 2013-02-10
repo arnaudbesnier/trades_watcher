@@ -6,7 +6,7 @@ ActiveAdmin.register_page "Performances" do
     cell_style = 'display: table-cell; background: white; font-weight: normal; text-shadow: none;'
 
     h3 'CURRENT SITUATION'
-
+    # TODO: fill in the table
     table :class => 'index_table', :style => 'display: table;' do
       tbody do
         tr do
@@ -24,7 +24,7 @@ ActiveAdmin.register_page "Performances" do
 
     br
     h3 'WEEK PERFORMANCE'
-
+    # TODO: fill in the table
     table :class => 'index_table', :style => 'display: table;' do
       tbody do
         tr do
@@ -46,7 +46,7 @@ ActiveAdmin.register_page "Performances" do
 
     br
     h3 'MONTH PERFORMANCE'
-
+    # TODO: fill in the table
     table :class => 'index_table', :style => 'display: table;' do
       tbody do
         tr do
