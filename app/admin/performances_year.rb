@@ -43,11 +43,13 @@ ActiveAdmin.register_page "Performances" do
           th { 'DAY' }
           th { 'GAIN' }
           th { 'VALORIZATION' }
-          th { 'PERFORMANCE' }
+          th { 'PERFORMANCE DAY' }
+          th { 'PERFORMANCE TOTAL' }
         end
         1.upto(5) do |day|
           tr do
             th :style => cell_style_bold do week_day.call(day) end
+            th :style => cell_style do end
             th :style => cell_style do end
             th :style => cell_style do end
             th :style => cell_style do end
@@ -65,11 +67,13 @@ ActiveAdmin.register_page "Performances" do
           th { 'WEEK' }
           th { 'GAIN' }
           th { 'VALORIZATION' }
-          th { 'PERFORMANCE' }
+          th { 'PERFORMANCE WEEK' }
+          th { 'PERFORMANCE TOTAL' }
         end
         0.upto(4) do |week|
           tr do
             th :style => cell_style_bold do year_week.call(week_number - week) end
+            th :style => cell_style do end
             th :style => cell_style do end
             th :style => cell_style do end
             th :style => cell_style do end
