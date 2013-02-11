@@ -32,7 +32,7 @@ class Trade < ActiveRecord::Base
   def self.stock_current_value
     stock_value = 0
     self.opened.each do |trade|
-      stock_value += trade.shares * (trade.company.quotes.last || trade.order_open.price)
+      stock_value += trade.shares * (trade.company.quotes.last.value || trade.order_open.price)
     end
     stock_value
   end
@@ -40,7 +40,7 @@ class Trade < ActiveRecord::Base
   def self.stock_purchase_value
     stock_value = 0
     self.opened.each do |trade|
-      stock_value += trade.shares * (trade.company.quotes.last || trade.order_open.price)
+      stock_value += trade.shares * (trade.company.quotes.last.value || trade.order_open.price)
     end
     stock_value
   end
