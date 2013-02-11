@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.2'           # Framework
 gem 'pg'                       # Database
 
-gem 'activeadmin'              # Admin layout
+gem 'activeadmin', '~> 0.5.0'  # Admin layout
 gem 'rufus-scheduler'          # Sheduler
 
 gem 'yahoofinance', '~> 1.2.2' # Near real-time quotes
