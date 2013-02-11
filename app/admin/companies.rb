@@ -25,7 +25,7 @@ ActiveAdmin.register Company do
       row :symbol
       row(:sector)        { |company| company.sector.name.upcase if company.sector }
       row(:index)         { |company| company.index.upcase }
-      row(:current_value) { |company| company.quotes.any? ? format_price(company.quotes.last.value) : nil }
+      row(:current_value) { |company| company.quotes.any? ? format_price(company.quotes.last.value, { :right_align => false }) : nil }
       row(:trade_opened)  { |company| check_box_tag 'active', 'yes', company.has_opened_trade?, :disabled => true }
     end
   end
