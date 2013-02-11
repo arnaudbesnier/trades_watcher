@@ -26,4 +26,11 @@ class Transaction < ActiveRecord::Base
   	WITHDRAW => :withdraw
   }
 
+  scope :deposits, where(:transaction_type => DEPOSIT)
+  scope :withdraw, where(:transaction_type => WITHDRAW)
+
+  def self.deposit_total
+    self.deposits.sum(:amount) - self.withdraw.sum(:amount)
+  end
+
 end

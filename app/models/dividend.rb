@@ -25,6 +25,12 @@ class Dividend < ActiveRecord::Base
 
   validates :company_id, :uniqueness => { :scope => :received_at }
 
+  def self.total_net
+    dividends_total = 0
+    self.all.each { |dividend| dividends_total += dividend.total_net }
+    dividends_total
+  end
+
   def total_gross
     amount * shares 
   end

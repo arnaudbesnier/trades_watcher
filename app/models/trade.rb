@@ -29,6 +29,28 @@ class Trade < ActiveRecord::Base
 
   #validates :company_id, :uniqueness => { :scope => [:order_open_id, :order_close_id] }
 
+  def self.stock_current_value
+    stock_value = 0
+    self.opened.each do |trade|
+      stock_value += trade.shares * (trade.company.quotes.last || trade.order_open.price)
+    end
+    stock_value
+  end
+
+  def self.stock_purchase_value
+    stock_value = 0
+    self.opened.each do |trade|
+      stock_value += trade.shares * (trade.company.quotes.last || trade.order_open.price)
+    end
+    stock_value
+  end
+
+ def self.sold_stock_gain
+    stock_value = 0
+    self.closed.each { |trade| stock_value += trade.gain }
+    stock_value
+  end
+
   def sold_value
     return nil unless order_close
     order_close.value * shares / order_close.shares
