@@ -82,7 +82,7 @@ module ApplicationHelper
     right_align = options[:right_align].nil? ? true : options[:right_align]
     wrapper     = right_align ? 'align_right' : 'align_left'
 
-  	return send(wrapper, '-') unless value
+  	return send(wrapper, '-') unless value && value != 0
 
   	value = value.to_s.reverse.gsub(/...(?=.)/,'\& ').reverse
   	return send(wrapper, value)
