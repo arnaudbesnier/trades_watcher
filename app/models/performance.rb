@@ -21,7 +21,6 @@ class Performance
     @valorization       = @stock_value + @liquidity
     @performance_period = @stock_value - Trade.stock_value(end_date - period_size)
     @performance_total  = @valorization - @deposits_total
-    #@performance   = (@valorization - @deposits) / @deposits * 100 
   end
 
 end

@@ -37,7 +37,6 @@ ActiveAdmin.register_page "Performances" do
 
     br
     h3 'WEEK PERFORMANCE'
-    # TODO: fill in the table
     table :class => 'index_table', :style => 'display: table;' do
       tbody do
         tr do
@@ -50,7 +49,6 @@ ActiveAdmin.register_page "Performances" do
         end
         1.upto(5) do |day|
           begin_day   = Date.commercial(year, week_number, day)
-          p begin_day
           displayable = begin_day <= Date.today
           if displayable
             end_day         = Date.commercial(year, week_number, day + 1)
@@ -70,7 +68,6 @@ ActiveAdmin.register_page "Performances" do
 
     br
     h3 'MONTH PERFORMANCE'
-    # TODO: fill in the table
     table :class => 'index_table', :style => 'display: table;' do
       tbody do
         tr do
@@ -82,13 +79,20 @@ ActiveAdmin.register_page "Performances" do
           th { 'PERFORMANCE TOTAL' }
         end
         0.upto(4) do |week|
+          current_week_number = week_number - week
+          begin_day   = Date.commercial(year, current_week_number, 1)
+          displayable = begin_day <= Date.today
+          if displayable
+            end_day          = Date.commercial(year, current_week_number + 1, 1)
+            week_performance = Performance.new(begin_day, end_day)
+          end
           tr do
-            th :style => cell_style_bold do year_week.call(week_number - week) end
-            th :style => cell_style do end
-            th :style => cell_style do end
-            th :style => cell_style do end
-            th :style => cell_style do end
-            th :style => cell_style do end
+            th :style => cell_style_bold do year_week.call(current_week_number) end
+            th :style => cell_style do format_variation_price(week_performance.trade_gains)        if displayable end
+            th :style => cell_style do format_integer(week_performance.closings)                   if displayable end
+            th :style => cell_style do format_price(week_performance.valorization)                 if displayable end
+            th :style => cell_style do format_variation_price(week_performance.performance_period) if displayable end
+            th :style => cell_style do format_variation_price(week_performance.performance_total)  if displayable end
           end
         end
       end
