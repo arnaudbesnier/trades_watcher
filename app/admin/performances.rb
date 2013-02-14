@@ -58,11 +58,11 @@ ActiveAdmin.register_page "Performances" do
           end
           tr do
             th :style => cell_style_bold do week_day.call(day) end
-            th :style => cell_style do format_variation_price(day_performance.trade_gains) if displayable end
-            th :style => cell_style do format_integer(day_performance.closings)            if displayable end
-            th :style => cell_style do format_price(day_performance.valorization)          if displayable end
-            th :style => cell_style do format_variation_price(day_performance.performance) if displayable end
-            th :style => cell_style do end
+            th :style => cell_style do format_variation_price(day_performance.trade_gains)        if displayable end
+            th :style => cell_style do format_integer(day_performance.closings)                   if displayable end
+            th :style => cell_style do format_price(day_performance.valorization)                 if displayable end
+            th :style => cell_style do format_variation_price(day_performance.performance_period) if displayable end
+            th :style => cell_style do format_variation_price(day_performance.performance_total)  if displayable end
           end
         end
       end
