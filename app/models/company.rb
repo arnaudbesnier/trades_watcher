@@ -25,8 +25,8 @@ class Company < ActiveRecord::Base
   	company_ids = Trade.opened.pluck(:company_id)
   	Company.where(:id => company_ids)
   }
-  scope :CAC40,     where(:index => 'CAC40')
-  scope :SBF120,    where(:index => 'SBF120')
+  scope :CAC40,  where(:index => 'CAC40')
+  scope :SBF120, where(:index => 'SBF120')
 
   def has_opened_trade?
     Trade.opened.where(:company_id => self).any?
