@@ -29,10 +29,17 @@ class Trade < ActiveRecord::Base
 
   #validates :company_id, :uniqueness => { :scope => [:order_open_id, :order_close_id] }
 
-  def self.stock_current_value
+  def self.closed_between begin_date, end_date
+    self.joins('LEFT OUTER JOIN orders ON orders.id = trades.order_close_id')
+        .where('orders.executed_at > ? AND orders.executed_at < ?', begin_date, end_date)
+  end
+
+  def self.stock_value date
     stock_value = 0
     self.opened.each do |trade|
-      stock_value += trade.shares * (trade.company.quotes.last.value || trade.order_open.price)
+      last_quote = trade.company.quotes.where('created_at < ?', date).last
+      last_value = last_quote.value if last_quote
+      stock_value += trade.shares * (last_value || trade.order_open.price)
     end
     stock_value
   end
@@ -43,9 +50,10 @@ class Trade < ActiveRecord::Base
     stock_value
   end
 
- def self.sold_stock_gain
+ def self.sold_stock_gain begin_date, end_date
     stock_value = 0
-    self.closed.each { |trade| stock_value += trade.gain }
+    closed_trades = self.closed_between(begin_date, end_date)
+    closed_trades.each { |trade| stock_value += trade.gain }
     stock_value
   end
 

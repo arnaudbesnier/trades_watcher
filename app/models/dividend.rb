@@ -25,9 +25,10 @@ class Dividend < ActiveRecord::Base
 
   validates :company_id, :uniqueness => { :scope => :received_at }
 
-  def self.total_net
+  def self.total_net begin_date, end_date
     dividends_total = 0
-    self.all.each { |dividend| dividends_total += dividend.total_net }
+    dividends       = self.where('received_at > ? AND received_at < ?', begin_date, end_date)
+    dividends.each { |dividend| dividends_total += dividend.total_net }
     dividends_total
   end
 

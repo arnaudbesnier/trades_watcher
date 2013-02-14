@@ -29,8 +29,9 @@ class Transaction < ActiveRecord::Base
   scope :deposits, where(:transaction_type => DEPOSIT)
   scope :withdraw, where(:transaction_type => WITHDRAW)
 
-  def self.deposit_total
-    self.deposits.sum(:amount) - self.withdraw.sum(:amount)
+  def self.deposit_total begin_date, end_date
+    transactions = self.where('created_at > ? AND created_at < ?', begin_date, end_date)
+    transactions.deposits.sum(:amount) - transactions.withdraw.sum(:amount)
   end
 
 end
