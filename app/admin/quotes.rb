@@ -1,7 +1,5 @@
 ActiveAdmin.register Quote do
 
-  menu :priority => 2
-
   config.sort_order = :company_id_asc
 
   actions :index, :show

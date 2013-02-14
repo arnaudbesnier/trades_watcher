@@ -1,5 +1,7 @@
 ActiveAdmin.register Order do
 
+  menu :priority => 3
+
   config.sort_order = :executed_at_desc
 
   filter :order_type, :as => :select, :collection => Order::TYPE_IDS
