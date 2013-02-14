@@ -7,7 +7,7 @@ class Performance
     period_size    = end_date - begin_date
 
     @deposits      = Transaction.deposit_total(begin_date, end_date)
-    @dividends_net = Dividend.total_net(begin_date, end_date)
+    @dividends_net = Dividend.total_net(Time.new(2011), end_date)
     @closings      = Trade.closed_between(begin_date, end_date).count
     @trade_gains   = Trade.sold_stock_gain(begin_date, end_date)
     @stock_value   = Trade.stock_value(end_date)
