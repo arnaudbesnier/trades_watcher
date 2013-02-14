@@ -82,7 +82,7 @@ class Trade < ActiveRecord::Base
 
   def performance
     return nil unless gain
-    gain / (order_open.price * shares) * 100
+    gain / (order_open.price * shares + total_fees) * 100
   end
 
 private
