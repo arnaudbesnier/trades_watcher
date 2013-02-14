@@ -30,7 +30,7 @@ ActiveAdmin.register_page "Performances" do
           th :style => cell_style do format_price(current_performance.stock_value) end
           th :style => cell_style do format_price(current_performance.liquidity) end
           th :style => cell_style do format_price(current_performance.valorization) end
-          th :style => cell_style do end #format_variation(current_performance.performance) end
+          th :style => cell_style do format_variation_price(current_performance.performance_total) end
         end
       end
     end
@@ -47,7 +47,7 @@ ActiveAdmin.register_page "Performances" do
           th { 'PERFORMANCE DAY' }
           th { 'PERFORMANCE TOTAL' }
         end
-        1.upto(5) do |day|
+        5.downto(1) do |day|
           begin_day   = Date.commercial(year, week_number, day)
           displayable = begin_day <= Date.today
           if displayable
