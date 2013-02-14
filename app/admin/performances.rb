@@ -51,7 +51,7 @@ ActiveAdmin.register_page "Performances" do
         1.upto(5) do |day|
           begin_day   = Date.commercial(year, week_number, day)
           p begin_day
-          displayable = begin_day < Date.today
+          displayable = begin_day <= Date.today
           if displayable
             end_day         = Date.commercial(year, week_number, day + 1)
             day_performance = Performance.new(begin_day, end_day)
