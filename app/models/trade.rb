@@ -85,6 +85,19 @@ class Trade < ActiveRecord::Base
     gain / (order_open.price * shares + total_fees) * 100
   end
 
+  def max_loss
+    return nil if order_close
+
+    order_stop_loss = Order.sell_stop_loss
+                           .where('executed IS false AND company_id = ? AND shares >= ?', company_id, shares)
+                           .first
+    if order_stop_loss
+      shares * (order_stop_loss.price - order_open.price) - total_fees
+    else
+      - (shares * order_open.price + total_fees)
+    end
+  end
+
 private
 
   def total_bought

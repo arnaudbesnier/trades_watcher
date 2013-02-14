@@ -43,10 +43,11 @@ class Order < ActiveRecord::Base
 
   belongs_to :company
 
-  scope :executed, where(:executed => true)
-  scope :pending,  where(:executed => false)
-  scope :buy,      where(:order_type => [BUY])
-  scope :sell,     where(:order_type => [SELL, SELL_STOP_LOSS, SELL_STOP_GAIN])
+  scope :executed,       where(:executed => true)
+  scope :pending,        where(:executed => false)
+  scope :buy,            where(:order_type => BUY)
+  scope :sell,           where(:order_type => [SELL, SELL_STOP_LOSS, SELL_STOP_GAIN])
+  scope :sell_stop_loss, where(:order_type => SELL_STOP_LOSS) 
 
   validates :company_id, :presence => true
   validates :shares,     :presence => true
