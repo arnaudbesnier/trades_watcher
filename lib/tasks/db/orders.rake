@@ -17,7 +17,6 @@ namespace :db do
  		:commission  => order['commission'],
  		:taxes       => order['taxes'],
  		:created_at  => Time.zone.parse(order['created_at']),
- 		:executed    => order['executed'],
  		:executed_at => order['executed_at'].nil? ? nil : Time.zone.parse(order['executed_at'])
  	  })
  	end
