@@ -39,7 +39,7 @@ class Order < ActiveRecord::Base
 
   attr_accessible :company_id, :shares, :price, :order_type,
                   :commission, :taxes,
-                  :created_at, :executed, :executed_at
+                  :created_at, :executed_at
 
   belongs_to :company
 
@@ -58,6 +58,7 @@ class Order < ActiveRecord::Base
 
   validates :company_id, :uniqueness => { :scope => [:order_type, :created_at] }
 
+  before_save  :check_execution
   after_create :create_trade,  :if => :buy_order
   after_save   :update_trades, :if => :sell_order
 
@@ -73,6 +74,11 @@ private
 
   def sell_order
     [SELL, SELL_STOP_LOSS, SELL_STOP_GAIN].include?(order_type) && executed
+  end
+
+  def check_execution
+    self.executed = !!executed_at
+    true
   end
 
   def create_trade

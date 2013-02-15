@@ -36,4 +36,21 @@ ActiveAdmin.register Order do
     end
   end
 
+  form do |f|
+    f.inputs "Order" do
+      f.input :company
+      f.input :order_type,  :as => :select, :include_blank => false, :collection => Order::TYPE_IDS
+      f.input :shares
+      f.input :price
+      f.input :commission
+      f.input :taxes
+      f.input :created_at,  :as => :datetime
+      f.input :executed_at, :as => :datetime
+    end
+    #f.inputs "Content" do
+    #  f.input :body
+    #end
+    f.buttons
+  end
+
 end
