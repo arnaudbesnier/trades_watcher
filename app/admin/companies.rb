@@ -2,6 +2,8 @@ ActiveAdmin.register Company do
   
   menu :priority => 4
 
+  actions :index, :show, :edit, :update
+
   config.sort_order = :name_asc
 
   filter :symbol
@@ -28,6 +30,15 @@ ActiveAdmin.register Company do
       row(:current_value) { |company| company.quotes.any? ? format_price(company.quotes.last.value, { :right_align => false }) : nil }
       row(:trade_opened)  { |company| check_box_tag 'active', 'yes', company.has_opened_trade?, :disabled => true }
     end
+  end
+
+  form do |f|
+    f.inputs "Company" do
+      f.input :name
+      f.input :index
+      f.input :sector,  :as => :select, :include_blank => false
+    end
+    f.buttons
   end
 
 end
