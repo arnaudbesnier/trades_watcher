@@ -32,8 +32,13 @@ class Dividend < ActiveRecord::Base
     dividends_total
   end
 
+  # ActiveAdmin display
+  def name
+    "#{company.name} [#{format_price_display(total_net)}] - #{format_date(received_at)}"
+  end
+
   def total_gross
-    amount * shares 
+    amount * shares
   end
 
   def total_net

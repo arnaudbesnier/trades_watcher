@@ -25,4 +25,15 @@ ActiveAdmin.register Dividend do
     end
   end
 
+  form do |f|
+    f.inputs "Dividend" do
+      f.input :company
+      f.input :shares
+      f.input :amount
+      f.input :taxes
+      f.input :received_at, :as => :datetime
+    end
+    f.buttons
+  end
+
 end
