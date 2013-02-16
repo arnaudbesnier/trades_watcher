@@ -115,7 +115,7 @@ ActiveAdmin.register_page "Performances" do
     end
 
     br
-    h3 'YEAR PERFORMANCE'
+    h3 'ANNUAL SUMMARY'
 
     table :class => 'index_table', :style => 'display: table;' do
       tbody do
