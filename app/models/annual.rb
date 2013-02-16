@@ -1,7 +1,8 @@
-class GainPerYear
+class Annual
 
   attr_reader :year, :deposits, :trade_gains, :dividends, :closings,
-  			  :deposits_total, :trade_gains_total, :dividends_total
+  			      :deposits_total, :trade_gains_total, :dividends_total,
+              :trade_gains_performance, :dividends_performance 
 
   def initialize year
   	@year                  = year
@@ -27,18 +28,29 @@ class GainPerYear
   	dividendes_total.each  { |dividend| @dividends_total   += dividend.total_net }
   	trade_gains_total.each { |trade|    @trade_gains_total += trade.gain }
   	deposits_total.each    { |deposit|  @deposits_total    += deposit.amount }
+ 
+    @trade_gains_performance = @trade_gains / @deposits_total * 100
+    @dividends_performance   = @dividends / @deposits_total * 100
   end
 
   def valorization
   	@deposits_total + @dividends_total + @trade_gains_total
   end
 
+  def gain_year
+    @dividends + @trade_gains
+  end
+
+  def gain_total
+    @dividends_total + @trade_gains_total
+  end
+
   def performance_year
-    (@dividends + @trade_gains) / @deposits_total * 100    
+    gain_year / @deposits_total * 100    
   end
 
   def performance_total
-    (@dividends_total + @trade_gains_total) / @deposits_total * 100
+    gain_total / @deposits_total * 100
   end
 
 end
