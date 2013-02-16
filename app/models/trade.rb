@@ -57,6 +57,11 @@ class Trade < ActiveRecord::Base
     stock_value
   end
 
+  # ActiveAdmin display
+  def name
+    "[#{company.symbol}] #{format_price_display(gain)}"
+  end
+
   def sold_value
     return nil unless order_close
     order_close.value * shares / order_close.shares

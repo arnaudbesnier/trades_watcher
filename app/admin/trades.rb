@@ -4,6 +4,8 @@ ActiveAdmin.register Trade do
 
   menu :priority => 2
 
+  actions :index, :show
+
   config.sort_order = :updated_at_desc
 
   scope :all
