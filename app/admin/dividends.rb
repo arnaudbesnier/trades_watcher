@@ -11,7 +11,7 @@ ActiveAdmin.register Dividend do
     column(:company)     { |dividend| link_to dividend.company.name, admin_company_path(dividend.company) }
     column :shares
     column(:amount)      { |dividend| format_price(dividend.amount) }
-    column(:total_net)   { |dividend| format_variation_price(dividend.total_net) }
+    column(:total_net)   { |dividend| format_price_with_sign(dividend.total_net) }
     column(:received_at) { |dividend| link_to format_date(dividend.received_at), admin_dividend_path(dividend) }
   end
 
@@ -20,7 +20,7 @@ ActiveAdmin.register Dividend do
       row(:company)     { |dividend| link_to dividend.company.name, admin_company_path(dividend.company) }
       row :shares
       row(:amount)      { |dividend| format_price(dividend.amount, { :right_align => false }) }
-      row(:total_net)   { |dividend| format_variation_price(dividend.total_net, { :right_align => false }) }
+      row(:total_net)   { |dividend| format_price_with_sign(dividend.total_net, { :right_align => false }) }
       row(:received_at) { |dividend| format_date(dividend.received_at) }
     end
   end

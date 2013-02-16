@@ -22,7 +22,7 @@ ActiveAdmin.register Trade do
     column(:fees)        { |trade| format_price(trade.total_fees) }
     column(:gains)       { |trade| format_variation_price(trade.gain, { :highlight => trade.order_close.nil? }) }
     column(:performance) { |trade| format_variation(trade.performance, { :highlight => trade.order_close.nil? }) }
-    column(:loss_max)    { |trade| format_variation_price(trade.max_loss, { :highlight => trade.order_close.nil? }) }
+    column(:loss_max)    { |trade| format_price_with_sign(trade.max_loss) }
   end
 
   show do |trade|
@@ -36,6 +36,7 @@ ActiveAdmin.register Trade do
       row(:fees)        { |trade| format_price(trade.total_fees, { :right_align => false }) }
       row(:gains)       { |trade| format_variation_price(trade.gain, { :right_align => false }) }
       row(:performance) { |trade| format_variation(trade.performance, { :right_align => false }) }
+      row(:loss_max)    { |trade| format_price_with_sign(trade.max_loss, { :right_align => false }) }
     end
   end
 

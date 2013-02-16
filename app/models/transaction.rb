@@ -34,4 +34,8 @@ class Transaction < ActiveRecord::Base
     transactions.deposits.sum(:amount) - transactions.withdraw.sum(:amount)
   end
 
+  def amount_signed
+    transaction_type == DEPOSIT ? amount : -amount
+  end
+
 end

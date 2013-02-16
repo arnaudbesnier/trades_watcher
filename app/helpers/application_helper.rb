@@ -31,6 +31,27 @@ module ApplicationHelper
     send(wrapper, "€ #{(formater % value).to_s}")
   end
 
+  def format_price_with_sign(value, options={})
+    return nil unless value
+
+    right_align = options[:right_align].nil? ? true : options[:right_align]
+    wrapper     = right_align ? 'align_right' : 'align_left'
+
+    return send(wrapper, '€ - ') if value == 0
+
+    displayed_value = '%.2f' % value
+
+    if value > 0
+      info  = "€&nbsp;+#{displayed_value}".html_safe
+      style = positive_style
+    elsif value < 0
+      info  = "€&nbsp;#{displayed_value}".html_safe
+      style = negative_style
+    end
+
+    send(wrapper, info, style)
+  end
+
   def format_variation_price(value, options={})
     decimal     = options[:decimal] || 2
     right_align = options[:right_align].nil? ? true : options[:right_align]
@@ -43,10 +64,10 @@ module ApplicationHelper
     info            = '0'
 
     if value > 0
-      info  = "&nbsp;€&nbsp;#{displayed_value}&nbsp;".html_safe
+      info  = "€&nbsp;#{displayed_value}".html_safe
       style = positive_style
     elsif value < 0
-      info  = "&nbsp;€&nbsp;#{displayed_value.to_s[1..-1]}&nbsp;".html_safe
+      info  = "€&nbsp;#{displayed_value.to_s[1..-1]}".html_safe
       style = negative_style
     end
 
@@ -66,14 +87,35 @@ module ApplicationHelper
     info            = '0%'
 
     if value > 0
-      info  = "&nbsp;+&nbsp;#{displayed_value}%&nbsp;".html_safe
+      info  = "+&nbsp;#{displayed_value}%".html_safe
       style = positive_style
   	elsif value < 0
-      info  = "&nbsp;-&nbsp;#{displayed_value.to_s[1..-1]}%&nbsp;".html_safe
+      info  = "-&nbsp;#{displayed_value.to_s[1..-1]}%".html_safe
       style = negative_style
     end
 
     style += shadow_style unless highlight
+
+    send(wrapper, info, style)
+  end
+
+  def format_price_and_variation(price, variation, options={})
+    right_align = options[:right_align].nil? ? true : options[:right_align]
+    wrapper     = right_align ? 'align_right' : 'align_left'
+
+    return send(wrapper, ' € -  ( - %)') unless price && variation && 
+
+    displayed_price     = "%.2f" % price
+    displayed_variation = "%.2f" % variation
+    info                = '€&nbsp;0.00&nbsp;(0.00%)'.html_safe
+
+    if variation > 0
+      info  = "€&nbsp;#{displayed_price}&nbsp;(+#{displayed_variation}%)".html_safe
+      style = positive_style
+    elsif variation < 0
+      info  = "€&nbsp;#{displayed_price.to_s[1..-1]}&nbsp;(#{displayed_variation}%)".html_safe
+      style = negative_style
+    end
 
     send(wrapper, info, style)
   end
@@ -102,20 +144,12 @@ private
   	end
   end
 
-  def positive_color
-    '#41A317'
-  end
-
-  def negative_color
-    '#C11B17'
-  end
-
   def positive_style
-    "color: white; font-weight: bold; background-color: #{positive_color};"
+    "color: #41A317; text-shadow: 1px 1px 0px #AAFF77;"
   end
 
   def negative_style
-    "color: white; font-weight: bold; background-color: #{negative_color};"
+    "color: #C11B17; text-shadow: 1px 1px 0px #FF9999;"
   end
 
   def shadow_style

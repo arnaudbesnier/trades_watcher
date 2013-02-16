@@ -2,7 +2,8 @@ class Performance
 
   attr_reader :deposits, :dividends_net, :closings, :trade_gains,
               :stock_value, :liquidity, :valorization,
-              :performance_period, :performance_total 
+              :performance_period, :performance_total,
+              :variation_period, :variation_total
 
   def initialize begin_date=Time.new(2011), end_date=Time.now
     begin_story, now = Time.new(2011), Time.now
@@ -21,6 +22,9 @@ class Performance
     @valorization       = @stock_value + @liquidity
     @performance_period = @stock_value - Trade.stock_value(end_date - period_size)
     @performance_total  = @valorization - @deposits_total
+
+    @variation_period = @performance_period / (@valorization - @performance_period) * 100
+    @variation_total  = @performance_total / @deposits_total * 100
   end
 
 end

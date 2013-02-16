@@ -56,11 +56,19 @@ ActiveAdmin.register_page "Performances" do
           end
           tr do
             th :style => cell_style_bold do week_day.call(day) end
-            th :style => cell_style do format_variation_price(day_performance.trade_gains)        if displayable end
+            th :style => cell_style do format_price_with_sign(day_performance.trade_gains)        if displayable end
             th :style => cell_style do format_integer(day_performance.closings)                   if displayable end
             th :style => cell_style do format_price(day_performance.valorization)                 if displayable end
-            th :style => cell_style do format_variation_price(day_performance.performance_period) if displayable end
-            th :style => cell_style do format_variation_price(day_performance.performance_total)  if displayable end
+            th :style => cell_style do
+              if displayable
+                format_price_and_variation(day_performance.performance_period, day_performance.variation_period)
+              end
+            end
+            th :style => cell_style do
+              if displayable
+                format_price_and_variation(day_performance.performance_total, day_performance.variation_total)
+              end
+            end
           end
         end
       end
@@ -88,7 +96,7 @@ ActiveAdmin.register_page "Performances" do
           end
           tr do
             th :style => cell_style_bold do year_week.call(current_week_number) end
-            th :style => cell_style do format_variation_price(week_performance.trade_gains)        if displayable end
+            th :style => cell_style do format_price_with_sign(week_performance.trade_gains)        if displayable end
             th :style => cell_style do format_integer(week_performance.closings)                   if displayable end
             th :style => cell_style do format_price(week_performance.valorization)                 if displayable end
             th :style => cell_style do format_variation_price(week_performance.performance_period) if displayable end
@@ -118,9 +126,9 @@ ActiveAdmin.register_page "Performances" do
           tr do
             gain = GainPerYear.new(year)
             th :style => cell_style_bold do "#{gain.year}" end
-            th :style => cell_style do "#{format_variation_price(gain.trade_gains)}" end
+            th :style => cell_style do "#{format_price_with_sign(gain.trade_gains)}" end
             th :style => cell_style do "#{format_integer(gain.closings)}" end
-            th :style => cell_style do "#{format_variation_price(gain.dividends)}" end
+            th :style => cell_style do "#{format_price_with_sign(gain.dividends)}" end
             th :style => cell_style do "#{format_price(gain.deposits_total)}" end
             th :style => cell_style do "#{format_price(gain.valorization)}" end
             th :style => cell_style do "#{format_variation(gain.performance_year)}" end
