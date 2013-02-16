@@ -26,16 +26,19 @@ class Transaction < ActiveRecord::Base
   	WITHDRAW => :withdraw
   }
 
+  TYPE_IDS = TYPES.invert
+
   scope :deposits, where(:transaction_type => DEPOSIT)
   scope :withdraw, where(:transaction_type => WITHDRAW)
 
   def self.deposit_total begin_date, end_date
     transactions = self.where('created_at > ? AND created_at < ?', begin_date, end_date)
-    transactions.deposits.sum(:amount) - transactions.withdraw.sum(:amount)
+    transactions.deposits.sum(:amount) + transactions.withdraw.sum(:amount)
   end
 
-  def amount_signed
-    transaction_type == DEPOSIT ? amount : -amount
+  # ActiveAdmin display
+  def name
+    "#{TYPES[transaction_type].upcase} [#{format_price_display(amount)}] - #{format_date(created_at)}"
   end
 
 end
