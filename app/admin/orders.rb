@@ -47,9 +47,6 @@ ActiveAdmin.register Order do
       f.input :created_at,  :as => :datetime
       f.input :executed_at, :as => :datetime
     end
-    #f.inputs "Content" do
-    #  f.input :body
-    #end
     f.buttons
   end
 

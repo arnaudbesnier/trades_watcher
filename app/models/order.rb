@@ -62,6 +62,12 @@ class Order < ActiveRecord::Base
   after_create :create_trade,  :if => :buy_order
   after_save   :update_trades, :if => :sell_order
 
+
+  # ActiveAdmin display
+  def name
+    "#{TYPE_NAMES[order_type].upcase} | #{company.symbol} - #{format_price_display(value)}"
+  end
+
   def value
     shares * price
   end
