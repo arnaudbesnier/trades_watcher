@@ -18,6 +18,10 @@ module ApplicationHelper
     align_left "&nbsp;#{value.to_s.gsub(/_/, ' ')}&nbsp;".html_safe, "color: #FFFFFF; font-weight: bold; background-color: #{options[:color]};"
   end
 
+  def format_price_display(value)
+    '€ %.2f' % value
+  end
+
   def format_price(value, options={})
     return nil unless value
 
