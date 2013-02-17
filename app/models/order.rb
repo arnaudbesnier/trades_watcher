@@ -59,8 +59,8 @@ class Order < ActiveRecord::Base
   validates :company_id, :uniqueness => { :scope => [:order_type, :created_at] }
 
   before_save  :check_execution
-  after_create :create_trade,  :if => :buy_order
-  after_save   :update_trades, :if => :sell_order
+  after_create :create_trade,  :if => :buy_order?
+  after_save   :update_trades, :if => :sell_order?
 
 
   # ActiveAdmin display
@@ -72,14 +72,26 @@ class Order < ActiveRecord::Base
     shares * price
   end
 
+  def total
+    if buy_order?
+      value + total_fees
+    elsif sell_order?
+      value - total_fees
+    end
+  end
+
 private
 
-  def buy_order
+  def buy_order?
     [BUY].include? order_type 
   end
 
-  def sell_order
+  def sell_order?
     [SELL, SELL_STOP_LOSS, SELL_STOP_GAIN].include?(order_type) && executed
+  end
+
+  def total_fees
+    taxes + commission
   end
 
   def check_execution
