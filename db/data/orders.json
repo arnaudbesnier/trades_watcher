@@ -67,7 +67,7 @@
 		"shares":      20,
 		"order_type":  "buy",
 		"price":       25.85,
-		"commission":  2.50,
+		"commission":  2.40,
 		"taxes":       0,
 		"created_at":  "2012-01-17 09:06:21",
 		"executed_at": "2012-01-17 09:06:21"
@@ -85,7 +85,7 @@
 		"shares":      10,
 		"order_type":  "buy",
 		"price":       42.33,
-		"commission":  2.50,
+		"commission":  2.45,
 		"taxes":       0,
 		"created_at":  "2012-03-05 09:17:03",
 		"executed_at": "2012-03-05 09:17:03"
@@ -94,7 +94,7 @@
 		"shares":      15,
 		"order_type":  "buy",
 		"price":       37.57,
-		"commission":  2.50,
+		"commission":  2.43,
 		"taxes":       0,
 		"created_at":  "2012-03-05 09:18:22",
 		"executed_at": "2012-03-05 09:18:22"
@@ -121,7 +121,7 @@
 		"shares":      18,
 		"order_type":  "buy",
 		"price":       28.30,
-		"commission":  2.43,
+		"commission":  2.50,
 		"taxes":       0,
 		"created_at":  "2012-05-07 10:14:46",
 		"executed_at": "2012-05-07 10:14:46"
@@ -131,7 +131,7 @@
 		"order_type":  "buy",
 		"price":       126.65,
 		"commission":  2.50,
-		"taxes":       0,
+		"taxes":       1.51,
 		"created_at":  "2012-10-09 09:05:12",
 		"executed_at": "2012-10-09 09:05:12"
 	},{
@@ -140,7 +140,7 @@
 		"order_type":  "buy",
 		"price":       34.87,
 		"commission":  2.50,
-		"taxes":       0,
+		"taxes":       1.04,
 		"created_at":  "2012-10-11 09:13:18",
 		"executed_at": "2012-10-11 09:13:18"
 	},{
@@ -184,7 +184,7 @@
 		"shares":      15,
 		"order_type":  "sell",
 		"price":       40.97,
-		"commission":  2.57,
+		"commission":  1.53,
 		"taxes":       0,
 		"created_at":  "2012-12-28 09:14:50",
 		"executed_at": "2012-12-28 09:14:50"
@@ -255,7 +255,7 @@
 		"shares":      6,
 		"order_type":  "sell_stop_gain",
 		"price":       88.08,
-		"commission":  5.00,
+		"commission":  2.50,
 		"taxes":       0,
 		"created_at":  "2013-01-14 23:45:08",
 		"executed_at": "2013-01-15 09:00:00"
