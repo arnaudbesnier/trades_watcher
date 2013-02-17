@@ -21,6 +21,7 @@ ActiveAdmin.register Dividend do
       row :shares
       row(:amount)      { |dividend| format_price(dividend.amount, { :right_align => false }) }
       row(:total_net)   { |dividend| format_price_with_sign(dividend.total_net, { :right_align => false }) }
+      row(:taxe_rate)   { |dividend| format_percent(dividend.taxes) }
       row(:received_at) { |dividend| format_date(dividend.received_at) }
     end
   end

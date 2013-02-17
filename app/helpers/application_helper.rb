@@ -2,6 +2,11 @@
 
 module ApplicationHelper
 
+  def format_percent value
+    return ' - %' if nil
+    ' %.2f %' % (value * 100)
+  end
+
   def format_date(date)
     return nil unless date
     date.strftime("%Y %b %d")
