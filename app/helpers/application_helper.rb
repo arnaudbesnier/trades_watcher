@@ -139,6 +139,20 @@ module ApplicationHelper
   	return send(wrapper, value)
   end
 
+  def candlechart_options
+    {
+      :width           => '100%',
+      :height          => 240,
+      :legend          => 'none',
+      :colors          => ['#6698FF'],
+      :backgroundColor => { :strokeWidth => 2 },
+      :candlestick     => {
+        :risingColor  => { :fill => '#FFFFFF', :stroke => '#6698FF' },
+        :fallingColor => { :fill => '#6698FF', :stroke => '#6698FF' }
+      }
+    }
+  end
+
 private
 
   def align_left(content, style='')
