@@ -64,7 +64,7 @@ class Company < ActiveRecord::Base
     6.downto(0) do |number|
       day_quote = quotes.where('created_at >= ? AND created_at <= ?', last_quote_date - number.day, last_quote_date - (number - 1).day ).last
       if day_quote
-        day_candle_data << [day_quote.created_at.day.to_s, day_quote.value_day_open, day_quote.value, day_quote.value, day_quote.value_day_high]
+        day_candle_data << [day_quote.created_at.day.to_s, day_quote.value_day_low, day_quote.value_day_open, day_quote.value, day_quote.value_day_high]
       end
     end
 
