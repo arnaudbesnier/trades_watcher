@@ -15,7 +15,6 @@ ActiveAdmin.register_page "Performances" do
     current_performance = Performance.new
 
     h3 'CURRENT SITUATION'
-    # TODO: fill in the table
     table :class => 'index_table', :style => 'display: table;' do
       tbody do
         tr do
@@ -116,7 +115,6 @@ ActiveAdmin.register_page "Performances" do
 
     br
     h3 'ANNUAL SUMMARY'
-
     table :class => 'index_table', :style => 'display: table;' do
       tbody do
         tr do
