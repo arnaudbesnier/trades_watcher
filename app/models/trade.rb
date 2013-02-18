@@ -57,6 +57,15 @@ class Trade < ActiveRecord::Base
     stock_value
   end
 
+  def self.max_loss_and_ratio
+    total_secured, total_expenses = 0, 0 
+    self.opened.each do |trade|
+      total_secured  += trade.max_loss
+      total_expenses += trade.order_open.total
+    end
+    [total_secured, (total_secured / total_expenses * 100)]
+  end
+
   # ActiveAdmin display
   def name
     "[#{company.symbol}] #{format_price_display(gain)}"
@@ -85,6 +94,11 @@ class Trade < ActiveRecord::Base
     shares * (value - order_open.price) - total_fees
   end
 
+  def day_performance date=Time.now
+    last_quote = company.quotes.where('created_at < ?', date).last
+    [last_quote.variation_price_current, last_quote.variation_day_current]
+  end
+
   def performance
     return nil unless gain
     gain / (order_open.price * shares + total_fees) * 100
@@ -101,6 +115,10 @@ class Trade < ActiveRecord::Base
     else
       - (shares * order_open.price + total_fees)
     end
+  end
+
+  def max_loss_variation
+    max_loss / order_open.total * 100
   end
 
 private

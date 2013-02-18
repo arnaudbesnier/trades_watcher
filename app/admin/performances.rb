@@ -22,6 +22,7 @@ ActiveAdmin.register_page "Performances" do
           th { 'STOCK' }
           th { 'LIQUIDITY' }
           th { 'VALORIZATION' }
+          th { 'STOCK MAX LOSS' }
           th { 'PERFORMANCE' }
         end
         tr do
@@ -29,6 +30,7 @@ ActiveAdmin.register_page "Performances" do
           th :style => cell_style do format_price(current_performance.stock_value) end
           th :style => cell_style do format_price(current_performance.liquidity) end
           th :style => cell_style do format_price(current_performance.valorization) end
+          th :style => cell_style do format_price_and_variation(*Trade.max_loss_and_ratio) end
           th :style => cell_style do format_price_and_variation(current_performance.performance_total, current_performance.variation_total) end
         end
       end
