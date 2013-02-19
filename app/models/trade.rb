@@ -70,6 +70,18 @@ class Trade < ActiveRecord::Base
     "[#{company.symbol}] #{format_price_display(gain)}"
   end
 
+  def current_value
+    shares * company.last_value
+  end
+
+  def opened?
+    order_close.nil?
+  end
+
+  def closed?
+    !opened?
+  end
+
   def sold_value
     return nil unless order_close
     order_close.value * shares / order_close.shares
@@ -88,19 +100,23 @@ class Trade < ActiveRecord::Base
       value = order_close.price
     else
       return nil unless company.quotes.last
-      value = company.quotes.last.value
+      value = company.last_value
     end
     shares * (value - order_open.price) - total_fees
   end
 
-  def day_performance date=Time.now
-    last_quote = company.quotes.where('created_at < ?', date).last
-    [last_quote.variation_price_current, last_quote.variation_day_current]
+  def gain_day date=Time.now
+    shares * performance_day(date)[0]
   end
 
   def performance
     return nil unless gain
     gain / (order_open.price * shares + total_fees) * 100
+  end
+
+  def performance_day date=Time.now
+    last_quote = company.quotes.where('created_at < ?', date).last
+    [last_quote.variation_price_current, last_quote.variation_day_current]
   end
 
   def max_loss
@@ -117,6 +133,7 @@ class Trade < ActiveRecord::Base
   end
 
   def max_loss_variation
+    return nil if order_close
     max_loss / order_open.total * 100
   end
 

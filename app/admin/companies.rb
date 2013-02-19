@@ -21,7 +21,7 @@ ActiveAdmin.register Company do
       #day_performance = Company.cac40_ranking(company)
       #{}"#{format_price_and_variation(day_performance[:gain], day_performance[:performance])} #{day_performance[:rank]}"
     #end
-    column(:current_value) { |company| company.quotes.any? ? format_price(company.quotes.last.value) : nil }
+    column(:current_value) { |company| company.quotes.any? ? format_price(company.last_value) : nil }
     column(:trade_opened)  { |company| check_box_tag 'active', 'yes', company.has_opened_trade?, :disabled => true }
   end
 
@@ -31,7 +31,7 @@ ActiveAdmin.register Company do
       row :symbol
       row(:sector)        { |company| company.sector.name.upcase if company.sector }
       row(:index)         { |company| company.index.upcase }
-      row(:current_value) { |company| company.quotes.any? ? format_price(company.quotes.last.value, { :right_align => false }) : nil }
+      row(:current_value) { |company| company.quotes.any? ? format_price(company.last_value, { :right_align => false }) : nil }
       row(:trade_opened)  { |company| check_box_tag 'active', 'yes', company.has_opened_trade?, :disabled => true }
     end
 

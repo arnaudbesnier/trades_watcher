@@ -51,6 +51,10 @@ class Company < ActiveRecord::Base
     Trade.opened.where(:company_id => self).any?
   end
 
+  def last_value
+    quotes.last.value
+  end
+
   #def day_performance date=Time.now
   #  last_quote = quotes.where('created_at < ?', date).last
   #  [last_quote.variation_price_current, last_quote.variation_day_current]
