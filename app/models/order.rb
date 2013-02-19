@@ -37,9 +37,7 @@ class Order < ActiveRecord::Base
 
   TYPE_IDS = TYPE_NAMES.invert
 
-  attr_accessible :company_id, :shares, :price, :order_type,
-                  :commission, :taxes,
-                  :created_at, :executed_at
+  attr_protected :id, :executed
 
   belongs_to :company
 
@@ -54,14 +52,14 @@ class Order < ActiveRecord::Base
   validates :price,      :presence => true
   validates :order_type, :presence => true
   validates :created_at, :presence => true
-  validates :executed,   :inclusion => { :in => [true, false] }
+  #validates :executed,   :inclusion => { :in => [true, false] }
 
   validates :company_id, :uniqueness => { :scope => [:order_type, :created_at] }
 
   before_save  :check_execution
+  before_save  :set_taxe_and_commission
   after_create :create_trade,  :if => :buy_order?
   after_save   :update_trades, :if => :sell_order?
-
 
   # ActiveAdmin display
   def name
@@ -97,6 +95,11 @@ private
   def check_execution
     self.executed = !!executed_at
     true
+  end
+
+  def set_taxe_and_commission
+    self.taxes      ||= 0.0
+    self.commission ||= 0.0
   end
 
   def create_trade

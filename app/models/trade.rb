@@ -13,8 +13,7 @@
 
 class Trade < ActiveRecord::Base
 
-  attr_accessible :company_id, :shares,
-                  :order_open_id, :order_close_id
+  attr_protected :id
 
   scope :opened, where('order_close_id IS NULL') 
   scope :closed, where('order_close_id IS NOT NULL')
