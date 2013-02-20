@@ -7,6 +7,6 @@ if !defined? Rails::Console
   scheduler.cron '* 9-18 * * 1-5 Europe/Paris' do
     now = Time.now
     puts " = #{now} => Retrieve Yahoo Finance data\n\n"
-    Portfolio.new
+    QuotesRetriever.new
   end
 end

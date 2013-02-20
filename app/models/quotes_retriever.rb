@@ -1,4 +1,4 @@
-class Portfolio
+class QuotesRetriever
 
   def initialize
     @symbols = Company.all.map(&:symbol).collect { |symbol| "#{symbol}.PA" }
