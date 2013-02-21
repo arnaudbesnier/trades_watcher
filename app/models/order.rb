@@ -20,9 +20,11 @@ class Order < ActiveRecord::Base
   SELL           = 2
   SELL_STOP_LOSS = 3
   SELL_STOP_GAIN = 4
+  BUY_START_GAIN = 5
 
   TYPE_NAMES = {
   	BUY            => :buy,
+    BUY_START_GAIN => :buy_start_gain,
   	SELL           => :sell,
   	SELL_STOP_LOSS => :sell_stop_loss,
   	SELL_STOP_GAIN => :sell_stop_gain
@@ -30,6 +32,7 @@ class Order < ActiveRecord::Base
 
   TYPE_COLORS = {
     BUY            => '#4C787E',
+    BUY_START_GAIN => '#4C787E',
     SELL           => '#91FC17',
     SELL_STOP_LOSS => '#8217FC',
     SELL_STOP_GAIN => '#FDD017'
@@ -81,7 +84,7 @@ class Order < ActiveRecord::Base
 private
 
   def buy_order?
-    [BUY].include? order_type 
+    [BUY, BUY_START_GAIN].include?(order_type) && executed
   end
 
   def sell_order?
