@@ -16,7 +16,7 @@ ActiveAdmin.register Trade do
 
   index :download_links => false do
     column(:company,   :sortable => :company_id) { |trade| link_to trade.company.name, admin_company_path(trade.company_id) }
-    column(:opened_at, :sortable => :opened_at)  { |trade| link_to format_date(trade.order_open.executed_at), admin_trade_path(trade) }
+    column(:opened_at, :sortable => :opened_at)  { |trade| format_date(trade.order_open.executed_at) }
     column(:last_price)   { |trade| format_price(trade.company.last_value) }
     column(:day_change)   { |trade| format_price_and_variation(*trade.performance_day) }
     column(:shares)       { |trade| format_integer(trade.shares) }
@@ -26,6 +26,7 @@ ActiveAdmin.register Trade do
     column(:gain)         { |trade| format_price_and_variation(trade.gain, trade.performance, { :highlight => trade.opened? }) }
     column('Day\'s Gain') { |trade| format_price_with_sign(trade.gain_day, { :highlight => trade.opened? }) }
     column(:risk_max)     { |trade| format_price_and_variation(trade.max_loss, trade.max_loss_variation) if trade.opened? }
+    column('')            { |trade| show_link_icon(trade); }
   end
 
   show do |trade|

@@ -7,8 +7,9 @@ ActiveAdmin.register Transaction do
   filter :created_at
 
   index :download_links => false do
-    column(:executed_at) { |transaction| link_to format_date(transaction.created_at), admin_transaction_path(transaction) }
+    column(:executed_at) { |transaction| format_date(transaction.created_at) }
     column(:amount)      { |transaction| format_price_with_sign(transaction.amount) }
+    column('')           { |transaction| show_link_icon(transaction); edit_link_icon(transaction) }
   end
 
   show do |company|

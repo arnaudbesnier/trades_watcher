@@ -14,7 +14,7 @@ ActiveAdmin.register Company do
 
   index :download_links => false do
     column :name
-    column(:symbol)        { |company| link_to company.symbol, admin_company_path(company) }
+    column :symbol
     column(:sector)        { |company| company.sector.name.upcase if company.sector }
     column(:index)         { |company| company.index.upcase }
     #column(:day)           do |company|
@@ -23,6 +23,7 @@ ActiveAdmin.register Company do
     #end
     column(:current_value) { |company| company.quotes.any? ? format_price(company.last_value) : nil }
     column(:trade_opened)  { |company| check_box_tag 'active', 'yes', company.has_opened_trade?, :disabled => true }
+    column('')             { |company| show_link_icon(company); edit_link_icon(company) }
   end
 
   show do |company|

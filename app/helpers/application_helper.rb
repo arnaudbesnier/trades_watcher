@@ -139,6 +139,16 @@ module ApplicationHelper
   	return send(wrapper, value)
   end
 
+  def show_link_icon object
+    span link_to(tag(:img, :src => asset_path('admin/show.png'), :height => 15, :title => 'Show'),
+                      send("admin_#{object.class.name.downcase}_path", object))
+  end
+
+  def edit_link_icon object
+    span link_to(tag(:img, :src => asset_path('admin/edit.png'), :height => 15, :title => 'Edit'),
+                      send("edit_admin_#{object.class.name.downcase}_path", object))
+  end
+
   def candlechart_options
     {
       :width           => '100%',

@@ -20,7 +20,8 @@ ActiveAdmin.register Order do
     column(:commission)  { |order| format_price(order.commission) }
     column(:taxes)       { |order| format_price(order.taxes) if order.order_type == Order::BUY }
     column(:total)       { |order| format_price(order.total) }
-    column(:executed_at) { |order| link_to format_datetime(order.executed_at), admin_order_path(order.id) if order.executed }
+    column(:executed_at) { |order| format_datetime(order.executed_at) if order.executed }
+    column('')           { |order| show_link_icon(order); edit_link_icon(order) }
   end
 
   show do |company|

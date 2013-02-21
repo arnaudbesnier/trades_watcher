@@ -12,7 +12,8 @@ ActiveAdmin.register Dividend do
     column :shares
     column(:amount)      { |dividend| format_price(dividend.amount) }
     column(:total_net)   { |dividend| format_price_with_sign(dividend.total_net) }
-    column(:received_at) { |dividend| link_to format_date(dividend.received_at), admin_dividend_path(dividend) }
+    column(:received_at) { |dividend| format_date(dividend.received_at) }
+    column('')           { |dividend| show_link_icon(dividend); edit_link_icon(dividend) }
   end
 
   show do |dividend|
