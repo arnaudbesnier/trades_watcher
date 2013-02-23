@@ -61,7 +61,7 @@ class Order < ActiveRecord::Base
 
   before_save  :check_execution
   before_save  :set_taxe_and_commission
-  after_create :create_trade,  :if => :buy_order?
+  after_save   :create_trade,  :if => :buy_order?
   after_save   :update_trades, :if => :sell_order?
 
   # ActiveAdmin display
@@ -83,12 +83,16 @@ class Order < ActiveRecord::Base
 
 private
 
+  def just_executed?
+    executed_changed? && executed
+  end
+
   def buy_order?
-    [BUY, BUY_START_GAIN].include?(order_type) && executed
+    [BUY, BUY_START_GAIN].include?(order_type) && just_executed?
   end
 
   def sell_order?
-    [SELL, SELL_STOP_LOSS, SELL_STOP_GAIN].include?(order_type) && executed
+    [SELL, SELL_STOP_LOSS, SELL_STOP_GAIN].include?(order_type) && just_executed?
   end
 
   def total_fees
