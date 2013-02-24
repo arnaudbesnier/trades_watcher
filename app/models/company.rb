@@ -48,7 +48,7 @@ class Company < ActiveRecord::Base
   #end
 
   def has_opened_trade?
-    Trade.opened.where(:company_id => self).any?
+    trades.opened.any?
   end
 
   def last_value day=Date.today
@@ -57,10 +57,10 @@ class Company < ActiveRecord::Base
   end
 
   def portfolio_proportion
-    return nil if trades.empty?
+    return nil unless has_opened_trade?
 
     stock_total_value    = Performance.new.stock_value
-    company_trades_value = trades.inject(0) { |accum, trade| accum + trade.current_value }
+    company_trades_value = trades.opened.inject(0) { |accum, trade| accum + trade.current_value }
     company_trades_value / stock_total_value
   end
 
