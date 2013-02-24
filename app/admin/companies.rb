@@ -22,7 +22,7 @@ ActiveAdmin.register Company do
       #{}"#{format_price_and_variation(day_performance[:gain], day_performance[:performance])} #{day_performance[:rank]}"
     #end
     column(:current_value)  { |company| company.quotes.any? ? format_price(company.last_value) : nil }
-    column('portfolio (%)') { |company| format_percent(company.portfolio_proportion) }
+    column('Portfolio (%)') { |company| format_percent(company.portfolio_proportion, { :shadow => true }) }
     column(:week_variance)  { |company| format_decimal(company.week_variance) }
     column('')              { |company| show_link_icon(company); edit_link_icon(company) }
   end

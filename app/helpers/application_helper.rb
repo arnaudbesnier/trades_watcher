@@ -6,9 +6,14 @@ module ApplicationHelper
     align_right "&nbsp;#{value.blank? ? ' - ' : ('%.2f' % value)}&nbsp;".html_safe
   end
 
-  def format_percent value
+  def format_percent(value, options={})
     return nil if value.blank?
-    align_right "&nbsp;#{'%.2f %' % (value * 100)}&nbsp;".html_safe
+
+    right_align = options[:right_align].nil? ? true : options[:right_align]
+    shadow      = options[:shadow].nil? ? false : options[:shadow]
+
+    wrapper     = right_align ? 'align_right' : 'align_left'
+    send(wrapper, "&nbsp;#{'%.2f %' % (value * 100)}&nbsp;".html_safe, shadow ? "opacity: #{Math.sqrt(value) * 2};" : nil)
   end
 
   def format_date(date)
