@@ -31,10 +31,11 @@ ActiveAdmin.register Company do
     attributes_table do
       row :name
       row :symbol
-      row(:sector)        { |company| company.sector.name.upcase if company.sector }
-      row(:index)         { |company| company.index.upcase }
-      row(:current_value) { |company| company.quotes.any? ? format_price(company.last_value, { :right_align => false }) : nil }
-      row(:trade_opened)  { |company| check_box_tag 'active', 'yes', company.has_opened_trade?, :disabled => true }
+      row(:sector)         { |company| company.sector.name.upcase if company.sector }
+      row(:index)          { |company| company.index.upcase }
+      row(:current_value)  { |company| company.quotes.any? ? format_price(company.last_value, { :right_align => false }) : nil }
+      row('Portfolio (%)') { |company| format_percent(company.portfolio_proportion, { :right_align => false }) }
+      row(:trade_opened)   { |company| check_box_tag 'active', 'yes', company.has_opened_trade?, :disabled => true }
     end
 
    chart = GoogleVisualr::Interactive::CandlestickChart.new(company.week_candlechart, candlechart_options)
