@@ -13,7 +13,7 @@ module ApplicationHelper
     shadow      = options[:shadow].nil? ? false : options[:shadow]
 
     wrapper     = right_align ? 'align_right' : 'align_left'
-    send(wrapper, "&nbsp;#{'%.2f %' % (value * 100)}&nbsp;".html_safe, shadow ? "opacity: #{Math.sqrt(value) * 2};" : nil)
+    send(wrapper, "&nbsp;#{'%.2f %' % (value * 100)}&nbsp;".html_safe, shadow ? "opacity: #{Math.sqrt(value) * 3};" : nil)
   end
 
   def format_date(date)
