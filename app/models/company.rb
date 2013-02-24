@@ -64,7 +64,8 @@ class Company < ActiveRecord::Base
     values = []
 
     1.upto(5) do |day|
-      values << last_value(Date.commercial(year, week_number, day))
+      current_day = Date.commercial(year, week_number, day)
+      values << performance_day(current_day)[1]
     end
 
     values.compact!
@@ -98,6 +99,13 @@ class Company < ActiveRecord::Base
     data_table.new_column('number', 'max')
     data_table.add_rows(day_candle_data)
     data_table
+  end
+
+private
+
+  def performance_day date=Time.now
+    last_quote = quotes.where('created_at < ?', date).last
+    [last_quote.variation_price_current, last_quote.variation_day_current]
   end
 
 end

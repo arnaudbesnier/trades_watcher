@@ -28,6 +28,8 @@ class Trade < ActiveRecord::Base
 
   #validates :company_id, :uniqueness => { :scope => [:order_open_id, :order_close_id] }
 
+  delegate :performance_day, :to => :company, :allow_nil => true
+
   def self.closed_between begin_date, end_date
     self.joins('LEFT OUTER JOIN orders ON orders.id = trades.order_close_id')
         .where('orders.executed_at > ? AND orders.executed_at < ?', begin_date, end_date)
@@ -112,11 +114,6 @@ class Trade < ActiveRecord::Base
   def performance
     return nil unless gain
     gain / (order_open.price * shares + total_fees) * 100
-  end
-
-  def performance_day date=Time.now
-    last_quote = company.quotes.where('created_at < ?', date).last
-    [last_quote.variation_price_current, last_quote.variation_day_current]
   end
 
   def max_loss
