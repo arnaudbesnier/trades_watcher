@@ -51,8 +51,26 @@ class Company < ActiveRecord::Base
     Trade.opened.where(:company_id => self).any?
   end
 
-  def last_value
-    quotes.last.value
+  def last_value day=Date.today
+    quote = quotes.where('created_at < ?', day + 1).order('created_at DESC').first
+    quote ? quote.value : nil
+  end
+
+  def week_variance
+    today       = Date.today
+    year        = today.year
+    week_number = today.cweek
+
+    values = []
+
+    1.upto(5) do |day|
+      values << last_value(Date.commercial(year, week_number, day))
+    end
+
+    values.compact!
+
+    return nil if values.length == 0
+    Statistics::Serie.new(values).deviation
   end
 
   #def day_performance date=Time.now

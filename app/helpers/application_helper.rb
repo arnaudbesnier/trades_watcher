@@ -2,8 +2,12 @@
 
 module ApplicationHelper
 
+  def format_decimal value
+    align_right "&nbsp;#{value.blank? ? ' - ' : ('%.2f' % value)}&nbsp;".html_safe
+  end
+
   def format_percent value
-    return ' - %' if nil
+    return ' - %' if value.blank?
     ' %.2f %' % (value * 100)
   end
 

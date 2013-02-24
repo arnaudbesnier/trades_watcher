@@ -23,6 +23,7 @@ ActiveAdmin.register Company do
     #end
     column(:current_value) { |company| company.quotes.any? ? format_price(company.last_value) : nil }
     column(:trade_opened)  { |company| check_box_tag 'active', 'yes', company.has_opened_trade?, :disabled => true }
+    column(:week_variance) { |company| format_decimal(company.week_variance) }
     column('')             { |company| show_link_icon(company); edit_link_icon(company) }
   end
 
