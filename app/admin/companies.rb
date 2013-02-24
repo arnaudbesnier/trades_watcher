@@ -15,16 +15,16 @@ ActiveAdmin.register Company do
   index :download_links => false do
     column :name
     column :symbol
-    column(:sector)        { |company| company.sector.name.upcase if company.sector }
-    column(:index)         { |company| company.index.upcase }
+    column(:sector)         { |company| company.sector.name.upcase if company.sector }
+    column(:index)          { |company| company.index.upcase }
     #column(:day)           do |company|
       #day_performance = Company.cac40_ranking(company)
       #{}"#{format_price_and_variation(day_performance[:gain], day_performance[:performance])} #{day_performance[:rank]}"
     #end
-    column(:current_value) { |company| company.quotes.any? ? format_price(company.last_value) : nil }
-    column(:trade_opened)  { |company| check_box_tag 'active', 'yes', company.has_opened_trade?, :disabled => true }
-    column(:week_variance) { |company| format_decimal(company.week_variance) }
-    column('')             { |company| show_link_icon(company); edit_link_icon(company) }
+    column(:current_value)  { |company| company.quotes.any? ? format_price(company.last_value) : nil }
+    column('portfolio (%)') { |company| format_percent(company.portfolio_proportion) }
+    column(:week_variance)  { |company| format_decimal(company.week_variance) }
+    column('')              { |company| show_link_icon(company); edit_link_icon(company) }
   end
 
   show do |company|

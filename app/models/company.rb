@@ -56,6 +56,14 @@ class Company < ActiveRecord::Base
     quote ? quote.value : nil
   end
 
+  def portfolio_proportion
+    return nil if trades.empty?
+
+    stock_total_value    = Performance.new.stock_value
+    company_trades_value = trades.inject(0) { |accum, trade| accum + trade.current_value }
+    company_trades_value / stock_total_value
+  end
+
   def week_variance
     today       = Date.today
     year        = today.year

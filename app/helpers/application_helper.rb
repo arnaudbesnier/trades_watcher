@@ -7,8 +7,8 @@ module ApplicationHelper
   end
 
   def format_percent value
-    return ' - %' if value.blank?
-    ' %.2f %' % (value * 100)
+    return nil if value.blank?
+    align_right "&nbsp;#{'%.2f %' % (value * 100)}&nbsp;".html_safe
   end
 
   def format_date(date)
