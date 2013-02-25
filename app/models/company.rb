@@ -47,6 +47,22 @@ class Company < ActiveRecord::Base
   #    company[:company].to_i == cac40_company.id }
   #end
 
+  def self.portfolio_proportions_chart display_options={}
+    data_table = GoogleVisualr::DataTable.new
+    data_table.new_column('string', 'Company')
+    data_table.new_column('number', 'Value')
+    data = []
+
+    portfolio.each do |company|
+      company_value = Trade.opened.where(:company_id => company.id).inject(0) { |sum, company| sum += company.current_value }
+      data << [company.symbol, company_value]
+    end
+
+    data_table.add_rows(data)
+
+    GoogleVisualr::Interactive::PieChart.new(data_table, display_options)
+  end
+
   def has_opened_trade?
     trades.opened.any?
   end

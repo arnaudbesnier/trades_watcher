@@ -6,6 +6,12 @@ ActiveAdmin.register Trade do
 
   actions :index, :show
 
+  controller do
+    def scoped_collection
+      Trade.includes(:company, :order_open, :order_close)
+    end
+  end
+
   config.sort_order = :updated_at_desc
 
   scope :all
@@ -55,6 +61,27 @@ ActiveAdmin.register Trade do
       row(:valorization) { format_price(current_performance.valorization) }
       row(:total_gain)   { format_price_and_variation(current_performance.performance_total, current_performance.variation_total) }
       row(:risk_max)     { format_price_and_variation(*Trade.max_loss_and_ratio) }
+    end
+  end
+
+  sidebar :portfolio_proportions, :only => :index do
+    display_options = {
+      :pieSliceText => 'label',
+      :chartArea => {
+        :top    => 5,
+        :left   => 0,
+        :height => '100%',
+        :width  => '100%'
+      },
+      :legend => {
+        :position => 'none'
+      },
+      :backgroundColor => {
+        :fill => '#F4F4F4'
+      }
+    }
+    div :id => 'chart' do
+      render_chart Company.portfolio_proportions_chart(display_options), 'chart'
     end
   end
 
