@@ -38,7 +38,7 @@ ActiveAdmin.register Company do
       row(:trade_opened)   { |company| check_box_tag 'active', 'yes', company.has_opened_trade?, :disabled => true }
     end
 
-   chart = GoogleVisualr::Interactive::CandlestickChart.new(company.week_candlechart, candlechart_options)
+    chart = GoogleVisualr::Interactive::CandlestickChart.new(company.week_candlechart, candlechart_options)
     div :id => 'chart' do
       render_chart chart, 'chart'
     end
@@ -51,6 +51,14 @@ ActiveAdmin.register Company do
       f.input :sector,  :as => :select, :include_blank => false
     end
     f.buttons
+  end
+
+  sidebar :web_links, :only => :show do
+    attributes_table_for company do
+      row('investir.fr') do
+        link_to(tag(:img, :src => asset_path('admin/investir.ico'), :height => 15), "http://bourse.lesechos.fr/bourse/synthese.jsp?code=#{company.symbol}&place=XPAR&codif=MNE", { :target => '_blanc' })
+      end
+    end
   end
 
 end
