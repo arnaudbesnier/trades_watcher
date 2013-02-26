@@ -55,9 +55,8 @@ ActiveAdmin.register Company do
 
   sidebar :web_links, :only => :show do
     attributes_table_for company do
-      row('investir.fr') do
-        link_to(tag(:img, :src => asset_path('admin/investir.ico'), :height => 15), "http://bourse.lesechos.fr/bourse/synthese.jsp?code=#{company.symbol}&place=XPAR&codif=MNE", { :target => '_blanc' })
-      end
+      row('Google')      { web_link_icon 'google_finance.ico', "https://www.google.com/finance?q=EPA%3A#{company.symbol}&ei=EdArUZjEOqWHwAOa3wE&authuser=0&ed=us&hl=en" }
+      row('investir.fr') { web_link_icon 'investir.ico', "http://bourse.lesechos.fr/bourse/synthese.jsp?code=#{company.symbol}&place=XPAR&codif=MNE" }
     end
   end
 

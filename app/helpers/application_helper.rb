@@ -158,6 +158,10 @@ module ApplicationHelper
                       send("edit_admin_#{object.class.name.downcase}_path", object))
   end
 
+  def web_link_icon icon, url
+    link_to(tag(:img, :src => asset_path("admin/#{icon}"), :height => 15), url, { :target => '_blanc' })   
+  end
+
   def candlechart_options
     {
       :width           => '100%',
