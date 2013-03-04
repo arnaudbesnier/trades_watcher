@@ -50,7 +50,7 @@ TradesWatcher::Application.routes.draw do
   #     resources :products
   #   end
 
-  root :to => 'admin/performances#index'
+  root :to => 'admin/dashboard#index'
 
   # See how all your routes lay out with "rake routes"
 

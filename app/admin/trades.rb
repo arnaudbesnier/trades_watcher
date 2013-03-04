@@ -48,11 +48,11 @@ ActiveAdmin.register Trade do
   end
 
   sidebar :current_situation, :only => :index do
-    current_performance = Performance.new
+    current_performance = PerformanceTemp.new
 
     begin_day = Date.today
     end_day   = Date.today + 1.day
-    day_performance = Performance.new(begin_day, end_day)
+    day_performance = PerformanceTemp.new(begin_day, end_day)
 
     attributes_table_for current_performance do
       row(:liquidity)    { format_price(current_performance.liquidity) }

@@ -75,7 +75,7 @@ class Company < ActiveRecord::Base
   def portfolio_proportion
     return nil unless has_opened_trade?
 
-    stock_total_value    = Performance.new.stock_value
+    stock_total_value    = PerformanceTemp.new.stock_value
     company_trades_value = trades.opened.inject(0) { |accum, trade| accum + trade.current_value }
     company_trades_value / stock_total_value
   end

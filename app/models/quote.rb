@@ -1,4 +1,4 @@
-# == Schema Information
+ # == Schema Information
 #
 # Table name: quotes
 #
@@ -25,8 +25,27 @@ class Quote < ActiveRecord::Base
 
   validates :company_id, :uniqueness => { :scope => :created_at }
 
+  after_create :set_day_performance
+
   def variation_price_current
     (1 - 1 / (100 + variation_day_current) * 100) * value
+  end
+
+private
+
+  def set_day_performance
+    perf_attributes = {
+	  :company_id     => company.id,
+	  :period_type_id => Performance::PERIOD_DAY,
+	  :time_close     => created_at,
+	  :value_open     => value_day_open,
+	  :value_close    => value,
+  	  :value_high     => value_day_high,
+  	  :value_low      => value_day_low
+	}
+	day  = created_at.to_date
+	perf = Performance.where('company_id = ? AND time_close > ? AND time_close < ?', company_id, day, day + 1.day).first
+	perf ? perf.update_attributes(perf_attributes) : Performance.create!(perf_attributes)
   end
 
 end

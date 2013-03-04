@@ -1,4 +1,4 @@
-ActiveAdmin.register_page "Performances" do
+ActiveAdmin.register_page "Dashboard" do
 
   menu :priority => 1
 
@@ -12,7 +12,7 @@ ActiveAdmin.register_page "Performances" do
     cell_style_bold = 'display: table-cell; background: white;'
     cell_style      = 'display: table-cell; background: white; font-weight: normal; text-shadow: none;'
 
-    current_performance = Performance.new
+    current_performance = PerformanceTemp.new
 
     h3 'CURRENT SITUATION'
     table :class => 'index_table', :style => 'display: table;' do
@@ -53,7 +53,7 @@ ActiveAdmin.register_page "Performances" do
           displayable = begin_day <= Date.today
           if displayable
             end_day         = Date.commercial(year, week_number, day + 1)
-            day_performance = Performance.new(begin_day, end_day)
+            day_performance = PerformanceTemp.new(begin_day, end_day)
           end
           tr do
             th :style => cell_style_bold do week_day.call(day) end
@@ -93,7 +93,7 @@ ActiveAdmin.register_page "Performances" do
           displayable = begin_day <= Date.today
           if displayable
             end_day          = Date.commercial(year, current_week_number + 1, 1)
-            week_performance = Performance.new(begin_day, end_day)
+            week_performance = PerformanceTemp.new(begin_day, end_day)
           end
           tr do
             th :style => cell_style_bold do year_week.call(current_week_number) end
