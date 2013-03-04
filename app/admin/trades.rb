@@ -31,7 +31,6 @@ ActiveAdmin.register Trade do
     column(:market_value) { |trade| format_price(trade.current_value) }
     column(:gain)         { |trade| format_price_and_variation(trade.gain, trade.performance, { :highlight => trade.opened? }) }
     column('Day\'s Gain') { |trade| format_price_with_sign(trade.gain_day, { :highlight => trade.opened? }) }
-    column(:risk_max)     { |trade| format_price_and_variation(trade.max_loss, trade.max_loss_variation) if trade.opened? }
     column('')            { |trade| show_link_icon(trade); }
   end
 
