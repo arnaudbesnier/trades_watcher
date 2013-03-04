@@ -58,8 +58,9 @@ ActiveAdmin.register Trade do
     attributes_table_for current_performance do
       row(:liquidity)    { format_price(current_performance.liquidity) }
       row(:stock_value)  { format_price(current_performance.stock_value) }
-      row(:day_gain)     { format_price_and_variation(day_performance.performance_period, day_performance.variation_period) }
       row(:valorization) { format_price(current_performance.valorization) }
+      row(:day_gain)     { format_price_and_variation(day_performance.performance_period, day_performance.variation_period) }
+      row(:stock_gain)   { format_price_and_variation(current_performance.performance_stock, current_performance.variation_stock) }
       row(:total_gain)   { format_price_and_variation(current_performance.performance_total, current_performance.variation_total) }
       row(:risk_max)     { format_price_and_variation(*Trade.max_loss_and_ratio) }
     end
