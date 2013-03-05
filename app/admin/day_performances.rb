@@ -13,7 +13,7 @@ ActiveAdmin.register Performance do
     column(:value_low)   { |day_perf| format_price(day_perf.value_low, { :decimal => 3 }) }
     column(:value_high)  { |day_perf| format_price(day_perf.value_high, { :decimal => 3 }) }
     column(:gain)        { |day_perf| format_price_and_variation(*day_perf.gain_and_variation) }
-    column(:time_close)  { |day_perf| format_datetime(day_perf.time_close) }
+    column(:closed_at)   { |day_perf| format_datetime(day_perf.closed_at) }
   end
 
 end

@@ -19,6 +19,7 @@ class Company < ActiveRecord::Base
   belongs_to :sector
 
   has_many :quotes
+  has_many :performances
   has_many :trades
 
   scope :portfolio, lambda {
