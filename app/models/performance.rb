@@ -11,6 +11,8 @@ class Performance < ActiveRecord::Base
   validates :company_id, :uniqueness => { :scope => :closed_at }
 
   def gain_and_variation
+    return [nil, nil] unless value_last
+
     gain      = value_close - value_last
     variation = gain / value_open * 100
     [gain, variation]
