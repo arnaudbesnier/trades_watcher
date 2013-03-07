@@ -48,7 +48,7 @@ private
     if perf
       perf.update_attributes(perf_attributes)
     else
-      perf_attributes[:value_last] = company.performances.where('closed_at > ? AND closed_at < ?', day - 1, day).first.value_close
+      perf_attributes[:value_last] = company.performances.where('closed_at < ?', day).order('closed_at DESC').first.value_close
       Performance.create!(perf_attributes)
     end
   end
