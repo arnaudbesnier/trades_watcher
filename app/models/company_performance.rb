@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: company_performances
+#
+#  id             :integer          not null, primary key
+#  company_id     :integer
+#  period_type_id :integer
+#  closed_at      :datetime
+#  value_close    :decimal(, )
+#  value_open     :decimal(, )
+#  value_high     :decimal(, )
+#  value_low      :decimal(, )
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  value_last     :decimal(, )
+#
+
 class CompanyPerformance < ActiveRecord::Base
 
   PERIOD_DAY = 1
