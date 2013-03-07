@@ -26,9 +26,9 @@ class AddPerformanceTable < ActiveRecord::Migration
   	  (first_day..last_day).each do |day|
   	  	quote = company.quotes.where('created_at < ?', day + 1)
   	  				   .order('created_at DESC').first
-  	  	performance = Performance.create({
+  	  	performance = CompanyPerformance.create({
   	  	  :company_id     => company.id,
-  	  	  :period_type_id => Performance::PERIOD_DAY,
+  	  	  :period_type_id => CompanyPerformance::PERIOD_DAY,
   	  	  :time_close     => quote.created_at,
   	  	  :value_open     => quote.value_day_open,
   	  	  :value_close    => quote.value,

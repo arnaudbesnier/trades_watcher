@@ -1,4 +1,6 @@
-ActiveAdmin.register Performance do
+ActiveAdmin.register CompanyPerformance do
+
+  menu :parent => 'Companies', :label => 'Performances'
 
   config.sort_order = :created_at_asc
 

@@ -36,7 +36,7 @@ private
   def set_day_performance
     perf_attributes = {
       :company_id     => company.id,
-      :period_type_id => Performance::PERIOD_DAY,
+      :period_type_id => CompanyPerformance::PERIOD_DAY,
       :closed_at      => created_at,
       :value_open     => value_day_open,
       :value_close    => value,
@@ -49,7 +49,7 @@ private
       perf.update_attributes(perf_attributes)
     else
       perf_attributes[:value_last] = company.performances.where('closed_at < ?', day).order('closed_at DESC').first.value_close
-      Performance.create!(perf_attributes)
+      CompanyPerformance.create!(perf_attributes)
     end
   end
 
