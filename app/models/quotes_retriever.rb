@@ -50,6 +50,8 @@ class QuotesRetriever
         :created_at            => created_at
       })
     end
+
+    PortfolioPerformance.create_or_update_today
   end
 
   def symbols

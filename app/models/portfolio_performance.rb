@@ -21,19 +21,22 @@ class PortfolioPerformance < ActiveRecord::Base
     :day => PERIOD_DAY
   }
 
-  # TODO: make it work
   def self.create_or_update_today
-  	today = Date.today
-  	if performance = self.where('closed_at > ? AND closed_at < ?', today, today + 1.day).first
-  	  performance.value_closed
-  	else
+  	today  = Date.today
+  	trades = Trade.includes(:order_open).opened
+
+  	unless performance = self.where('closed_at > ? AND closed_at < ?', today, today + 1.day).first
   	  performance                = PortfolioPerformance.new
   	  performance.period_type_id = PERIOD_DAY
 
-  	  value_open
-  	  value_close
+  	  performance.value_open = trades.inject(0) do |sum, trade|
+  	  	sum += trade.shares * trade.company.quotes.order('created_at DESC').limit(1).first.value_day_open
+  	  end
   	end
 
+  	performance.value_close = trades.inject(0) do |sum, trade|
+      sum += trade.shares * trade.company.quotes.order('created_at DESC').limit(1).first.value
+  	end
   	performance.closed_at = Time.now
   	performance.save!
   end
