@@ -7,6 +7,7 @@ ActiveAdmin.register PortfolioPerformance do
   actions :index
 
   index :download_links => false do
+    column :id
     column(:value_open)  { |day_perf| format_price(day_perf.value_open) }
     column(:value_close) { |day_perf| format_price(day_perf.value_close) }
     column(:trade_gains) { |day_perf| format_price(day_perf.trade_gains) }
