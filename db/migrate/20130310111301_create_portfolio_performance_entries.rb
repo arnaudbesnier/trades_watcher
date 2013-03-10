@@ -21,12 +21,11 @@ class CreatePortfolioPerformanceEntries < ActiveRecord::Migration
   	  performance.period_type_id = PortfolioPerformance::PERIOD_DAY
   	  performance.closed_at      = Time.new(today.year, today.month, today.day, 19)
 
-      trades = Trade.joins("INNER JOIN orders orders_open ON orders_open.id = trades.order_open_id AND orders_open.executed_at < date '#{tomorrow}'")# +
-      					           #"INNER JOIN orders orders_close ON orders_close.id = trades.order_close_id AND (orders_close.executed_at IS NULL OR orders_close.executed_at > date '#{today}')")
+      trades = Trade.joins("INNER JOIN orders orders_open ON orders_open.id = trades.order_open_id AND orders_open.executed_at < date '#{tomorrow}'")
 
       puts " == trades count: #{trades.count}"
-      performance.closings    = trades.inject(0) { |sum, trade| sum += 1          if trade.order_close && trade.order_close.executed_at > today && trade.order_close.executed_at < tomorrow }
-      performance.trade_gains = trades.inject(0) { |sum, trade| sum += trade.gain if trade.order_close && trade.order_close.executed_at > today && trade.order_close.executed_at < tomorrow } 
+      performance.closings    = trades.inject(0) { |sum, trade| (trade.order_close && trade.order_close.executed_at > today && trade.order_close.executed_at < tomorrow) ? sum += 1 : sum }
+      performance.trade_gains = trades.inject(0) { |sum, trade| (trade.order_close && trade.order_close.executed_at > today && trade.order_close.executed_at < tomorrow) ? sum += trade.gain : sum } 
 
       value_open, value_close = 0, 0
 
