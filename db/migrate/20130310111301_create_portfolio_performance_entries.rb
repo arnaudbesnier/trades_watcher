@@ -36,8 +36,8 @@ class CreatePortfolioPerformanceEntries < ActiveRecord::Migration
 	  	    trade_value_open  = trade.company.quotes.where('created_at > ?', today).order('created_at ASC').limit(1).first
 	  	    trade_value_close = trade.company.quotes.where('created_at < ?', tomorrow).order('created_at DESC').limit(1).first
 
-	  	    value_open  += trade.shares * trade_value_open.value  if trade_value_open
-	  	    value_close += trade.shares * trade_value_close.value if trade_value_close
+	  	    value_open  += trade.shares * trade_value_open.value_day_open if trade_value_open
+	  	    value_close += trade.shares * trade_value_close.value         if trade_value_close
 	  	  end
 	    end
 
