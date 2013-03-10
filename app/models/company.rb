@@ -19,8 +19,8 @@ class Company < ActiveRecord::Base
   belongs_to :sector
 
   has_many :quotes
-  has_many :performances
   has_many :trades
+  has_many :performances, :class_name => 'CompanyPerformance'
 
   scope :portfolio, lambda {
   	company_ids = Trade.opened.pluck(:company_id)

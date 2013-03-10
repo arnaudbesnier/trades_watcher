@@ -35,7 +35,7 @@ private
 
   def set_day_performance
     perf_attributes = {
-      :company_id     => company.id,
+      :company_id     => company_id,
       :period_type_id => CompanyPerformance::PERIOD_DAY,
       :closed_at      => created_at,
       :value_open     => value_day_open,
