@@ -2,7 +2,7 @@ ActiveAdmin.register CompanyPerformance do
 
   menu :parent => 'Companies', :label => 'Performances'
 
-  config.sort_order = :closed_at_asc
+  config.sort_order = :closed_at_desc
 
   actions :index
 
