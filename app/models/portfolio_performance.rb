@@ -41,4 +41,10 @@ class PortfolioPerformance < ActiveRecord::Base
   	performance.save!
   end
 
+  def gain_and_variation
+    gain      = value_close - value_open
+    variation = gain / value_open * 100
+    [gain, variation]
+  end
+
 end
