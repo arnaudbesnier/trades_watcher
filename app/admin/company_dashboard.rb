@@ -14,7 +14,8 @@ ActiveAdmin.register_page 'CompanyDashboard' do
 
     h3 'DAY TOP 5'
     table :class => 'index_table', :style => 'display: table;' do
-      current_day = Date.commercial(year, week_number, today.cwday)
+      last_day    = today.cwday < 6 ? today.cwday : 5
+      current_day = Date.commercial(year, week_number, last_day)
       day_top_5   = CompanyPerformance.find_day_top_5 current_day
       tbody do
         tr do
