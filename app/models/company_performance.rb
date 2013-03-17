@@ -23,15 +23,28 @@ class CompanyPerformance < ActiveRecord::Base
     :day => PERIOD_DAY
   }
 
+  attr_accessor :variation
+
   belongs_to :company
 
   validates :company_id, :uniqueness => { :scope => :closed_at }
+
+  def self.find_day_top_5 day=Date.today
+    performances = self.where('closed_at >= ? AND closed_at < ?', day, day + 1.day).all
+
+    performances.each do |performance|
+      performance.variation = performance.gain_and_variation[1]
+    end
+
+    performances.sort { |a, b| a.variation <=> b.variation }
+    performances[0..4]
+  end
 
   def gain_and_variation
     return [nil, nil] unless value_last
 
     gain      = value_close - value_last
-    variation = gain / value_open * 100
+    variation = gain / value_last * 100
     [gain, variation]
   end
 end
