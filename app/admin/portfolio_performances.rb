@@ -2,7 +2,7 @@ ActiveAdmin.register PortfolioPerformance do
 
   menu :parent => 'Trades', :label => 'Performances'
 
-  config.sort_order = :closed_at_asc
+  config.sort_order = :closed_at_desc
 
   actions :index
 
