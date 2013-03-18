@@ -36,8 +36,7 @@ class CompanyPerformance < ActiveRecord::Base
       performance.variation = performance.gain_and_variation[1]
     end
 
-    performances.sort { |a, b| a.variation <=> b.variation }
-    performances[0..4]
+    performances.sort![0..4]
   end
 
   def gain_and_variation
