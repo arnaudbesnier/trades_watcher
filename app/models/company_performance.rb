@@ -29,7 +29,7 @@ class CompanyPerformance < ActiveRecord::Base
 
   validates :company_id, :uniqueness => { :scope => :closed_at }
 
-  def self.find_day_top_5 day=Date.today
+  def self.find_day_top_worst_5 day=Date.today
     performances = self.where('closed_at >= ? AND closed_at < ?', day, day + 1.day).all
 
     performances.each do |performance|
@@ -37,7 +37,7 @@ class CompanyPerformance < ActiveRecord::Base
     end
 
     performances.sort! { |a, b| b.variation.to_f <=> a.variation.to_f }
-    performances[0..4]
+    [performances[0..4], performances[-5, 5].reverse!]
   end
 
   def gain_and_variation
