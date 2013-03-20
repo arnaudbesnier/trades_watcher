@@ -1,4 +1,4 @@
-ActiveAdmin.register_page 'CompanyDashboard' do
+ActiveAdmin.register_page 'Company Perfs' do
 
   menu :parent => 'Dashboard', :label => 'Company'
 

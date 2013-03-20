@@ -32,6 +32,8 @@ class CompanyPerformance < ActiveRecord::Base
   def self.find_day_top_worst_5 day=Date.today
     performances = self.where('closed_at >= ? AND closed_at < ?', day, day + 1.day).all
 
+    return [[], []] if performances.empty?
+
     performances.each do |performance|
       performance.variation = performance.gain_and_variation[1]
     end
