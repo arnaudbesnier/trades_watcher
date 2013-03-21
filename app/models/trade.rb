@@ -108,12 +108,8 @@ class Trade < ActiveRecord::Base
   end
 
   def gain_day date=Time.now
-    if order_open.executed_at.to_date != date.to_date
-      perf = performance_day(date)[0]
-    else
-      perf = company.quotes.where('created_at < ?', date).last.value - order_open.price
-    end
-    shares * perf
+    return gain if order_open.executed_at.to_date == date.to_date
+    shares * performance_day(date)[0]
   end
 
   def performance
