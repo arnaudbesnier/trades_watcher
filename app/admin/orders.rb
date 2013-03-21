@@ -18,7 +18,7 @@ ActiveAdmin.register Order do
     column(:price)       { |order| format_price(order.price) }
     column(:type)        { |order| format_status(Order::TYPE_NAMES[order.order_type], { :color => Order::TYPE_COLORS[order.order_type] }) }
     column(:commission)  { |order| format_price(order.commission) }
-    column(:taxes)       { |order| format_price(order.taxes) if order.order_type == Order::BUY }
+    column(:taxes)       { |order| format_price(order.taxes) if order.send('buy_order?') }
     column(:total)       { |order| format_price(order.total) }
     column(:executed_at) { |order| format_datetime(order.executed_at) if order.executed }
     column('')           { |order| show_link_icon(order); edit_link_icon(order) }
@@ -31,7 +31,7 @@ ActiveAdmin.register Order do
       row(:price)       { |order| format_price(order.price, { :right_align => false }) }
       row(:type)        { |order| format_status(Order::TYPE_NAMES[order.order_type], { :color => Order::TYPE_COLORS[order.order_type] }) }
       row(:commission)  { |order| format_price(order.commission, { :right_align => false }) }
-      row(:taxes)       { |order| format_price(order.taxes, { :right_align => false }) if order.order_type == Order::BUY }
+      row(:taxes)       { |order| format_price(order.taxes, { :right_align => false }) if order.send('buy_order?') }
       row(:total)       { |order| format_price(order.total, { :right_align => false }) }
       row(:created_at)  { |order| link_to format_datetime(order.created_at), admin_order_path(order.id) }
       row(:executed_at) { |order| link_to format_datetime(order.executed_at), admin_order_path(order.id) if order.executed }
