@@ -31,7 +31,7 @@ class PortfolioPerformance < ActiveRecord::Base
 
   	  performance.value_open = trades.inject(0) do |sum, trade|
         if trade.order_open.executed_at.to_date == today
-  	  	  sum += trade.gain
+  	  	  sum += trade.order_open.price
         else
           sum += trade.shares * trade.company.quotes.order('created_at DESC').limit(1).first.value_day_open
         end
