@@ -28,15 +28,15 @@ class PortfolioPerformance < ActiveRecord::Base
   	unless performance = self.where('closed_at > ? AND closed_at < ?', today, today + 1.day).first
   	  performance                = PortfolioPerformance.new
   	  performance.period_type_id = PERIOD_DAY
-
-  	  performance.value_open = trades.inject(0) do |sum, trade|
-        if trade.order_open.executed_at.to_date == today
-  	  	  sum += trade.shares * trade.order_open.price
-        else
-          sum += trade.shares * trade.company.quotes.order('created_at DESC').limit(1).first.value_day_open
-        end
-  	  end
   	end
+
+    performance.value_open = trades.inject(0) do |sum, trade|
+      if trade.order_open.executed_at.to_date == today
+        sum += trade.shares * trade.order_open.price
+      else
+        sum += trade.shares * trade.company.quotes.order('created_at DESC').limit(1).first.value_day_open
+      end
+    end
 
   	performance.value_close = trades.inject(0) do |sum, trade|
       sum += trade.shares * trade.company.quotes.order('created_at DESC').limit(1).first.value
