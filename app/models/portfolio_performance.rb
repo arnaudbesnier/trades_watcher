@@ -30,7 +30,11 @@ class PortfolioPerformance < ActiveRecord::Base
   	  performance.period_type_id = PERIOD_DAY
 
   	  performance.value_open = trades.inject(0) do |sum, trade|
-  	  	sum += trade.shares * trade.company.quotes.order('created_at DESC').limit(1).first.value_day_open
+        if trade.order_open.executed_at.to_date == today
+  	  	  sum += trade.gain
+        else
+          sum += trade.shares * trade.company.quotes.order('created_at DESC').limit(1).first.value_day_open
+        end
   	  end
   	end
 
