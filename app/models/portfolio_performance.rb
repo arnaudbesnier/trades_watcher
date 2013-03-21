@@ -21,6 +21,8 @@ class PortfolioPerformance < ActiveRecord::Base
     :day => PERIOD_DAY
   }
 
+  scope :day, where(:period_type_id => PERIOD_DAY)
+
   def self.create_or_update_today
   	today  = Date.today
   	trades = Trade.includes(:order_open).opened
