@@ -26,7 +26,7 @@ ActiveAdmin.register Trade do
     column(:last_price)   { |trade| format_price(trade.company.last_value) }
     column(:day_change)   { |trade| format_price_and_variation(*trade.performance_day) }
     column(:shares)       { |trade| format_integer(trade.shares) }
-    column(:bought)       { |trade| format_price(trade.order_open.value) }
+    column(:bought)       { |trade| format_price(trade.order_open_total) }
     column(:sold)         { |trade| format_price(trade.sold_value) }
     column(:market_value) { |trade| format_price(trade.current_value) }
     column(:gain)         { |trade| format_price_and_variation(trade.gain, trade.performance, { :highlight => trade.opened? }) }
@@ -40,7 +40,7 @@ ActiveAdmin.register Trade do
       row(:opened_at)    { |trade| format_datetime(trade.order_open.executed_at) }
       row(:closed_at)    { |trade| format_datetime(trade.order_close.executed_at) if trade.closed? }
       row(:shares)       { |trade| format_integer(trade.shares, { :right_align => false }) }
-      row(:bought)       { |trade| format_price(trade.order_open.value, { :right_align => false }) }
+      row(:bought)       { |trade| format_price(trade.order_open_total, { :right_align => false }) }
       row(:sold)         { |trade| format_price(trade.sold_value, { :right_align => false }) }
       row(:gains)        { |trade| format_price_and_variation(trade.gain, trade.performance, { :right_align => false }) }
       row(:market_value) { |trade| format_price(trade.current_value, { :right_align => false }) }
