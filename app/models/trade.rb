@@ -29,6 +29,7 @@ class Trade < ActiveRecord::Base
   #validates :company_id, :uniqueness => { :scope => [:order_open_id, :order_close_id] }
 
   delegate :performance_day, :to => :company, :allow_nil => true
+  delegate :total, :to => :order_open, :prefix => true
 
   def self.closed_between begin_date, end_date
     self.joins('LEFT OUTER JOIN orders ON orders.id = trades.order_close_id')
@@ -46,9 +47,7 @@ class Trade < ActiveRecord::Base
   end
 
   def self.stock_purchase_value
-    stock_value = 0
-    self.opened.each { |trade| stock_value += trade.shares * trade.order_open.price }
-    stock_value
+    self.opened.inject(0) { |stock_value, trade| stock_value += trade.order_open_total }
   end
 
  def self.sold_stock_gain begin_date, end_date
