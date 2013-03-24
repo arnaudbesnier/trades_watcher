@@ -17,15 +17,20 @@
 
 class CompanyPerformance < ActiveRecord::Base
 
-  PERIOD_DAY = 1
+  PERIOD_DAY  = 1
+  PERIOD_WEEK = 2
 
   PERIOD_TYPE = {
-    :day => PERIOD_DAY
+    :day  => PERIOD_DAY,
+    :week => PERIOD_WEEK
   }
 
   attr_accessor :variation
 
   belongs_to :company
+
+  scope :day,  where(:period_type_id => PERIOD_DAY)
+  scope :week, where(:period_type_id => PERIOD_WEEK) 
 
   validates :company_id, :uniqueness => { :scope => :closed_at }
 
