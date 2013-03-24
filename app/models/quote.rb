@@ -25,7 +25,7 @@ class Quote < ActiveRecord::Base
 
   validates :company_id, :uniqueness => { :scope => :created_at }
 
-  after_create :set_day_performance
+  after_create :set_performances
 
   def variation_price_current
     (1 - 1 / (100 + variation_day_current) * 100) * value
@@ -33,23 +33,42 @@ class Quote < ActiveRecord::Base
 
 private
 
-  def set_day_performance
+  def set_performances
     perf_attributes = {
-      :company_id     => company_id,
-      :period_type_id => CompanyPerformance::PERIOD_DAY,
-      :closed_at      => created_at,
-      :value_open     => value_day_open,
-      :value_close    => value,
-      :value_high     => value_day_high,
-      :value_low      => value_day_low
+      :closed_at   => created_at,
+      :value_close => value,
+      :value_high  => value_day_high,
+      :value_low   => value_day_low
     }
-    day  = created_at.to_date
-    perf = company.performances.where('closed_at > ? AND closed_at < ?', day, day + 1.day).first
-    if perf
-      perf.update_attributes(perf_attributes)
+
+    day            = created_at.to_date
+    week_start_day = Date.commercial(day.year, day.cweek, 1)
+
+    perf_day  = company.performances.day.where('closed_at > ? AND closed_at < ?', day, day + 1.day).first
+    perf_week = company.performances.week.where('closed_at > ? AND closed_at < ?', week_start_day, week_start_day + 6.day).first
+    
+    if perf_day
+      perf_day.update_attributes(perf_attributes)
     else
-      perf_attributes[:value_last] = company.performances.where('closed_at < ?', day).order('closed_at DESC').first.value_close
-      CompanyPerformance.create!(perf_attributes)
+      CompanyPerformance.create!({
+        :company_id     => company_id,
+        :period_type_id => CompanyPerformance::PERIOD_DAY,
+        :value_open     => value_day_open,
+        :value_last     => company.performances.day.where('closed_at < ?', day).order('closed_at DESC').first.value_close
+      }.concat(perf_attributes))
+    end
+
+    if perf_week
+      perf_attributes[:value_high] = perf_week.value_high if perf_week.value_high > perf_attributes[:value_high]
+      perf_attributes[:value_low]  = perf_week.value_low  if perf_week.value_low  < perf_attributes[:value_low]
+      perf_week.update_attributes(perf_attributes)
+    else
+      CompanyPerformance.create!({
+        :company_id     => company_id,
+        :period_type_id => CompanyPerformance::PERIOD_WEEK,
+        :value_open     => value_day_open,
+        :value_last     => company.performances.week.where('closed_at < ?', week_start_day).order('closed_at DESC').first.value_close
+      }.concat(perf_attributes))
     end
   end
 
