@@ -54,3 +54,32 @@ class PortfolioPerformance < ActiveRecord::Base
   end
 
 end
+
+class CurrentPortfolioPerformance
+
+  attr_reader :current_value, :deposit_total, :liquidity, :valorization,
+              :trades_max_loss_and_ratio, :stock_value, :day_performance,
+              :performance_stock, :variation_stock, :performance_total, :variation_total
+
+  def initialize
+    begin_story = Time.new(2011)
+    end_date    = Date.today + 1.day
+
+    current_portfolio_performance = PortfolioPerformance.day.last
+
+    @current_value             = current_portfolio_performance.value_close
+    @day_performance           = current_portfolio_performance.gain_and_variation
+    @deposit_total             = Transaction.deposit_total(begin_story, end_date)
+    stock_purchase_value       = Trade.stock_purchase_value
+    @stock_value               = Trade.stock_value(end_date)
+    dividend_total             = Dividend.total_net(begin_story, end_date)
+    @trade_gains_total         = Trade.sold_stock_gain(begin_story, end_date)
+    @liquidity                 = @deposit_total + dividend_total + @trade_gains_total - stock_purchase_value
+    @valorization              = @stock_value + @liquidity
+    @performance_total         = valorization - deposit_total
+    @variation_total           = performance_total / deposit_total * 100
+    @trades_max_loss_and_ratio = Trade.max_loss_and_ratio
+    @performance_stock         = @stock_value - stock_purchase_value
+    @variation_stock           = @performance_stock / stock_purchase_value * 100
+  end
+end

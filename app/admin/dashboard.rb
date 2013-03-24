@@ -3,7 +3,6 @@ ActiveAdmin.register_page 'Dashboard' do
   menu :priority => 1
 
   content do
-    begin_story = Time.new(2011)
     today       = Date.today
     year        = today.year
     week_number = today.cweek
@@ -13,16 +12,7 @@ ActiveAdmin.register_page 'Dashboard' do
     cell_style_bold = 'display: table-cell; background: white;'
     cell_style      = 'display: table-cell; background: white; font-weight: normal; text-shadow: none;'
 
-    current_performance  = PortfolioPerformance.day.last
-    stock_purchase_value = Trade.stock_purchase_value
-    stock_value          = Trade.stock_value(today + 1.day)
-    deposit_total        = Transaction.deposit_total(begin_story, today + 1.day)
-    dividend_total       = Dividend.total_net(begin_story, today + 1.day)
-    trade_gains_total    = Trade.sold_stock_gain(begin_story, today + 1.day)
-    liquidity            = deposit_total + dividend_total + trade_gains_total - stock_purchase_value
-    valorization         = stock_value + liquidity
-    performance_total    = valorization - deposit_total
-    variation_total      = performance_total / deposit_total * 100
+    current_performance = CurrentPortfolioPerformance.new
 
     h3 'CURRENT SITUATION'
     table :class => 'index_table', :style => 'display: table;' do
@@ -36,12 +26,12 @@ ActiveAdmin.register_page 'Dashboard' do
           th { 'PERFORMANCE' }
         end
         tr do
-          th :style => cell_style do format_price(deposit_total) end
-          th :style => cell_style do format_price(current_performance.value_close) end
-          th :style => cell_style do format_price(liquidity) end
-          th :style => cell_style do format_price(valorization) end
-          th :style => cell_style do format_price_and_variation(*Trade.max_loss_and_ratio) end
-          th :style => cell_style do format_price_and_variation(performance_total, variation_total) end
+          th :style => cell_style do format_price(current_performance.deposit_total) end
+          th :style => cell_style do format_price(current_performance.current_value) end
+          th :style => cell_style do format_price(current_performance.liquidity) end
+          th :style => cell_style do format_price(current_performance.valorization) end
+          th :style => cell_style do format_price_and_variation(*current_performance.trades_max_loss_and_ratio) end
+          th :style => cell_style do format_price_and_variation(current_performance.performance_total, current_performance.variation_total) end
         end
       end
     end

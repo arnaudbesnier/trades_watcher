@@ -48,20 +48,16 @@ ActiveAdmin.register Trade do
   end
 
   sidebar :current_situation, :only => :index do
-    current_performance = PerformanceTemp.new
-
-    begin_day = Date.today
-    end_day   = Date.today + 1.day
-    day_performance = PerformanceTemp.new(begin_day, end_day)
+    current_performance = CurrentPortfolioPerformance.new
 
     attributes_table_for current_performance do
       row(:liquidity)    { format_price(current_performance.liquidity) }
       row(:stock_value)  { format_price(current_performance.stock_value) }
       row(:valorization) { format_price(current_performance.valorization) }
-      row(:day_gain)     { format_price_and_variation(day_performance.performance_period, day_performance.variation_period) }
+      row(:day_gain)     { format_price_and_variation(*current_performance.day_performance) }
       row(:stock_gain)   { format_price_and_variation(current_performance.performance_stock, current_performance.variation_stock) }
       row(:total_gain)   { format_price_and_variation(current_performance.performance_total, current_performance.variation_total) }
-      row(:risk_max)     { format_price_and_variation(*Trade.max_loss_and_ratio) }
+      row(:risk_max)     { format_price_and_variation(*current_performance.trades_max_loss_and_ratio) }
     end
   end
 
