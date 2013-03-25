@@ -63,11 +63,12 @@ private
       perf_attributes[:value_low]  = perf_week.value_low  if perf_week.value_low  < perf_attributes[:value_low]
       perf_week.update_attributes(perf_attributes)
     else
+      last_perf = company.performances.week.where('closed_at < ?', week_start_day).order('closed_at DESC').first
       CompanyPerformance.create!({
         :company_id     => company_id,
         :period_type_id => CompanyPerformance::PERIOD_WEEK,
         :value_open     => value_day_open,
-        :value_last     => company.performances.week.where('closed_at < ?', week_start_day).order('closed_at DESC').first.value_close
+        :value_last     => last_perf ? last_perf.value_close : nil
       }.merge(perf_attributes))
     end
   end
