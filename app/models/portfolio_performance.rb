@@ -48,9 +48,9 @@ class PortfolioPerformance < ActiveRecord::Base
   end
 
   def value_last
-    @value_last = self.where(:period_type_id => period_type_id)
-                      .where('closed_at < ?', created_at.to_date)
-                      .order('closed_at DESC').first
+    @value_last = PortfolioPerformance.where(:period_type_id => period_type_id)
+                                      .where('closed_at < ?', created_at.to_date)
+                                      .order('closed_at DESC').first
   end
 
   def gain_and_variation
