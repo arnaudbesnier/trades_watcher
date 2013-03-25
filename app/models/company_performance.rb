@@ -32,7 +32,7 @@ class CompanyPerformance < ActiveRecord::Base
   scope :day,  where(:period_type_id => PERIOD_DAY)
   scope :week, where(:period_type_id => PERIOD_WEEK) 
 
-  validates :company_id, :uniqueness => { :scope => :closed_at }
+  validates :company_id, :uniqueness => { :scope => [:period_type_id, :closed_at] }
 
   def self.find_day_top_worst_5 day=Date.today
     performances = self.where('closed_at >= ? AND closed_at < ?', day, day + 1.day).all
