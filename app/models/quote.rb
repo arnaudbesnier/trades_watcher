@@ -55,7 +55,7 @@ private
         :period_type_id => CompanyPerformance::PERIOD_DAY,
         :value_open     => value_day_open,
         :value_last     => company.performances.day.where('closed_at < ?', day).order('closed_at DESC').first.value_close
-      }.concat(perf_attributes))
+      }.merge(perf_attributes))
     end
 
     if perf_week
@@ -68,7 +68,7 @@ private
         :period_type_id => CompanyPerformance::PERIOD_WEEK,
         :value_open     => value_day_open,
         :value_last     => company.performances.week.where('closed_at < ?', week_start_day).order('closed_at DESC').first.value_close
-      }.concat(perf_attributes))
+      }.merge(perf_attributes))
     end
   end
 
