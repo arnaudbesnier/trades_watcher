@@ -11,12 +11,15 @@ namespace :db do
  	companies.each do |company|
       sector = Sector.find_or_create_by_name(company['sector'])
 
- 	  Company.create({
- 	    :name      => company['name'],
- 		:symbol    => company['symbol'],
- 		:sector_id => sector.id,
- 		:index     => company['index']
- 	  })
+      unless Company.where(name: company['name']).any?
+	 	Company.create({
+	 	  :name      => company['name'],
+	 	  :symbol    => company['symbol'],
+	 	  :sector_id => sector.id,
+	 	  :index     => company['index']
+	 	})
+	 	puts " ===> #{company['name']} company created"
+	  end
  	end
   end
 

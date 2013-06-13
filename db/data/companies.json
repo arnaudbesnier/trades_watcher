@@ -135,6 +135,11 @@
 		"sector": "Consumer goods",
 		"index":  "CAC40"
 	},{
+		"name":   "Prodware SA",
+		"symbol": "ALPRO",
+		"sector": "Information Technology",
+		"index":  "Alternext"
+	},{
 		"name":   "Publicis Groupe",
 		"symbol": "PUB",
 		"sector": "Consumer goods",
