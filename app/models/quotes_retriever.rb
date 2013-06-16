@@ -24,14 +24,18 @@ class QuotesRetriever
     @symbols.each do |symbol|
       quote = data[symbol]
 
-      date_elements = quote.date().split('/')
-      year          = date_elements.last
-      month         = date_elements.first
-      day           = date_elements[1]
-      time_elements = quote.time().split(':')
-      hour          = time_elements.first.to_i + 6 # +6 for Paris
-      minute        = time_elements.last[0..1]
-      created_at    = Time.new(year, month, day, hour, minute)
+      if quote.date == 'N/A'
+        created_at = Time.now
+      else
+        date_elements = quote.date().split('/')
+        year          = date_elements.last
+        month         = date_elements.first
+        day           = date_elements[1]
+        time_elements = quote.time().split(':')
+        hour          = time_elements.first.to_i + 6 # +6 for Paris
+        minute        = time_elements.last[0..1]
+        created_at    = Time.new(year, month, day, hour, minute)
+      end
 
       last_day_value     = quote.lastTrade() * (1 - quote.changePercent() / 100)
       variation_day_low  = (quote.dayLow() - last_day_value) / last_day_value * 100
