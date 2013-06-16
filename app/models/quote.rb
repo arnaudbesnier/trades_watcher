@@ -46,15 +46,16 @@ private
 
     perf_day  = company.performances.day.where('closed_at > ? AND closed_at < ?', day, day + 1.day).first
     perf_week = company.performances.week.where('closed_at > ? AND closed_at < ?', week_start_day, week_start_day + 6.day).first
-    
+
     if perf_day
       perf_day.update_attributes(perf_attributes)
     else
+      value_last = company.performances.day.where('closed_at < ?', day).order('closed_at DESC').first
       CompanyPerformance.create!({
         :company_id     => company_id,
         :period_type_id => CompanyPerformance::PERIOD_DAY,
         :value_open     => value_day_open,
-        :value_last     => company.performances.day.where('closed_at < ?', day).order('closed_at DESC').first.value_close
+        :value_last     => value_last ? value_last.value_close : nil
       }.merge(perf_attributes))
     end
 
