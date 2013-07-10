@@ -130,6 +130,8 @@ private
 
   def performance_day date=Time.now
     last_quote = quotes.where('created_at < ?', date).last
+    return [0, 0] unless last_quote
+
     [last_quote.variation_price_current, last_quote.variation_day_current]
   end
 
