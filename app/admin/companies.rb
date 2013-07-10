@@ -1,5 +1,5 @@
 ActiveAdmin.register Company do
-  
+
   menu :priority => 4
 
   actions :index, :show, :edit, :update
@@ -21,7 +21,7 @@ ActiveAdmin.register Company do
       #day_performance = Company.cac40_ranking(company)
       #{}"#{format_price_and_variation(day_performance[:gain], day_performance[:performance])} #{day_performance[:rank]}"
     #end
-    column(:current_value)  { |company| company.quotes.any? ? format_price(company.last_value) : nil }
+    column(:current_value)  { |company| format_price(company.last_value) if company.quotes.any? }
     column('Portfolio (%)') { |company| format_percent(company.portfolio_proportion, { :shadow => true }) }
     column(:week_variance)  { |company| format_decimal(company.week_variance) }
     column('')              { |company| show_link_icon(company); edit_link_icon(company) }
