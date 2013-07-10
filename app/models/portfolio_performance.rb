@@ -30,6 +30,8 @@ class PortfolioPerformance < ActiveRecord::Base
   	unless performance = self.where('closed_at > ? AND closed_at < ?', today, today + 1.day).first
   	  performance                = PortfolioPerformance.new
   	  performance.period_type_id = PERIOD_DAY
+      performance.closings       = 0
+      performance.trade_gains    = 0
   	end
 
     performance.value_open = trades.inject(0) do |sum, trade|
@@ -54,8 +56,8 @@ class PortfolioPerformance < ActiveRecord::Base
   end
 
   def gain_and_variation
-    closed_trades = Order.sell_today.inject(0) { |sum, order| sum += order.value }
-    opened_trades = Order.buy_today.inject(0)  { |sum, order| sum += order.value }
+    closed_trades = Order.sell_day(self.closed_at.to_date).inject(0) { |sum, order| sum += order.value }
+    opened_trades = Order.buy_day(self.closed_at.to_date).inject(0)  { |sum, order| sum += order.value }
 
     gain      = value_close - value_last + closed_trades - opened_trades
     variation = gain / value_last * 100

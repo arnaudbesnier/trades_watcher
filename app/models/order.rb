@@ -51,8 +51,8 @@ class Order < ActiveRecord::Base
   scope :sell_stop_loss, where(:order_type => SELL_STOP_LOSS)
 
 
-  scope :buy_today,  lambda { buy.where('executed_at > ? AND executed_at < ?', Date.today, Date.today + 1.day) }
-  scope :sell_today, lambda { sell.where('executed_at > ? AND executed_at < ?', Date.today, Date.today + 1.day) }
+  scope :buy_today,  lambda { |date| buy.where('executed_at > ? AND executed_at < ?', date, date + 1.day) }
+  scope :sell_today, lambda { |date| sell.where('executed_at > ? AND executed_at < ?', date, date + 1.day) }
 
   validates :company_id, :presence => true
   validates :shares,     :presence => true
@@ -136,6 +136,11 @@ private
       if shares_sold > 0
         trade.update_attributes({ :order_close_id => id })
         shares_sold -= trade.shares
+
+        day_performance = PortfolioPerformance.day.last
+        day_performance.closing     += 1
+        day_performance.trade_gains += trade.gain
+        day_performance.save!
         # TODO : handle trades that are not fully closed by creating a new clone trade
       else
         return
