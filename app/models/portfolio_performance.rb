@@ -54,7 +54,10 @@ class PortfolioPerformance < ActiveRecord::Base
   end
 
   def gain_and_variation
-    gain      = value_close - value_last
+    closed_trades = Order.sell_today.inject(0) { |sum, order| sum += order.value }
+    opened_trades = Order.buy_today.inject(0)  { |sum, order| sum += order.value }
+
+    gain      = value_close - value_last + closed_trades - opened_trades
     variation = gain / value_last * 100
     [gain, variation]
   end
