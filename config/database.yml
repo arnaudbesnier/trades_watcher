@@ -10,6 +10,7 @@ common: &common
 development:
   <<:       *common
   database: trades_watcher_development
+  host:     localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -17,6 +18,7 @@ development:
 test:
   <<:       *common
   database: trades_watcher_test
+  host:     localhost
 
 production:
   <<:       *common
