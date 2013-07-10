@@ -51,8 +51,8 @@ class Order < ActiveRecord::Base
   scope :sell_stop_loss, where(:order_type => SELL_STOP_LOSS)
 
 
-  scope :buy_today,  lambda { |date| buy.where('executed_at > ? AND executed_at < ?', date, date + 1.day) }
-  scope :sell_today, lambda { |date| sell.where('executed_at > ? AND executed_at < ?', date, date + 1.day) }
+  scope :buy_day,  lambda { |date| buy.where('executed_at > ? AND executed_at < ?', date, date + 1.day) }
+  scope :sell_day, lambda { |date| sell.where('executed_at > ? AND executed_at < ?', date, date + 1.day) }
 
   validates :company_id, :presence => true
   validates :shares,     :presence => true
