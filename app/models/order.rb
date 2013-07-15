@@ -138,7 +138,7 @@ private
         shares_sold -= trade.shares
 
         day_performance = PortfolioPerformance.day.last
-        day_performance.closing     += 1
+        day_performance.closings    += 1
         day_performance.trade_gains += trade.gain
         day_performance.save!
         # TODO : handle trades that are not fully closed by creating a new clone trade
