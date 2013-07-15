@@ -2,7 +2,7 @@
 if [ "$1" ]; then
 	BACKUP="$1"
 else
-	BACKUP="~/Dropbox/Documents/Money/Trades-watcher/last.dump"
+	BACKUP="$HOME/Dropbox/Documents/Money/Trades-watcher/last.dump"
 fi
 
 echo '--- Clear schema'
