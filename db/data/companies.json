@@ -120,6 +120,11 @@
 		"sector": "Consumer goods",
 		"index":  "CAC40"
 	},{
+		"name":   "Medica",
+		"symbol": "MDCA",
+		"sector": "Health",
+		"index":  "CAC All Shares"
+	},{
 		"name":   "Orpea",
 		"symbol": "ORP",
 		"sector": "Health",
