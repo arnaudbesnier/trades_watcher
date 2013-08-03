@@ -12,6 +12,14 @@ ActiveAdmin.register Order do
   scope :executed
   scope :pending
 
+  controller do
+    def create
+      params[:order] = params[:order].merge(Order.parse_email_data(params[:order][:data])) unless params[:order][:data].blank?
+      Order.create!(params[:order])
+      redirect_to admin_trades_path
+    end
+  end
+
   index :download_links => false do
     column(:company)     { |order| link_to order.company.name, admin_company_path(order.company_id) }
     column(:shares)      { |order| format_integer(order.shares) }
@@ -42,6 +50,7 @@ ActiveAdmin.register Order do
     f.inputs "Order" do
       f.input :company, :include_blank => false
       f.input :order_type,  :as => :select, :include_blank => false, :collection => Order::TYPE_IDS
+      f.input :data, :as => :text
       f.input :shares
       f.input :price
       f.input :commission

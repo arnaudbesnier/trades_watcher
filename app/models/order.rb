@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # == Schema Information
 #
 # Table name: orders
@@ -40,6 +42,7 @@ class Order < ActiveRecord::Base
 
   TYPE_IDS = TYPE_NAMES.invert
 
+  attr_accessor :data
   attr_protected :id, :executed
 
   belongs_to :company
@@ -83,6 +86,33 @@ class Order < ActiveRecord::Base
     elsif sell_order?
       value - total_fees
     end
+  end
+
+  def self.parse_email_data data
+    computed_data = {}
+    day, month, year = /Date d'ordre:\t(\d{2})\/(\d{2})\/(\d{4})/.match(data)[1..3]
+    hour, minutes    = /Heure:\t(\d{2}):(\d{2}):\d{2}/.match(data)[1..2]
+
+    total = /Montant final:\s*Cr ([\d.]*[,\s]*\d{2}) EUR/.match(data)[1].gsub('.', '').gsub(',', '.').to_f
+    date  = Time.new(year, month, day, hour, minutes)
+
+    computed_data[:shares]      = /Quantité:\t(\d*)/.match(data)[1].to_i
+    computed_data[:price]       = /Prix unitaire:\t(\d*,\d*) EUR/.match(data)[1].gsub(',', '.')
+    computed_data[:commission]  = total > 1000 ? 5.0 : 2.5 # TODO: handle greater commissions
+
+    computed_data['created_at(1i)'] = year
+    computed_data['created_at(2i)'] = month
+    computed_data['created_at(3i)'] = day
+    computed_data['created_at(4i)'] = hour
+    computed_data['created_at(5i)'] = minutes
+
+    computed_data['executed_at(1i)'] = year
+    computed_data['executed_at(2i)'] = month
+    computed_data['executed_at(3i)'] = day
+    computed_data['executed_at(4i)'] = hour
+    computed_data['executed_at(5i)'] = minutes
+
+    computed_data
   end
 
 private
