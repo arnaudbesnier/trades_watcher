@@ -12,7 +12,7 @@ gem 'rufus-scheduler'            # Sheduler
 gem 'yahoofinance', '~> 1.2.2'   # Near real-time quotes
 
 group :development do
-	gem 'annotate', '>=2.5.0'    # Models annotation
+  gem 'annotate', '>=2.5.0'    # Models annotation
 end
 
 # Gems used only for assets and not required
