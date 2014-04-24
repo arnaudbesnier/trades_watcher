@@ -95,6 +95,11 @@
 		"sector": "Information Technology",
 		"index":  "SBF120"
 	},{
+		"name":   "ITS Group",
+		"symbol": "ITS",
+		"sector": "Information Technology",
+		"index":  "CAC All Shares"
+	},{
 		"name":   "Lafarge",
 		"symbol": "LG",
 		"sector": "Manufacturing",
@@ -174,6 +179,11 @@
 		"symbol": "SU",
 		"sector": "Manufacturing",
 		"index":  "CAC40"
+	},{
+		"name":   "Sidetrade",
+		"symbol": "ALBFR",
+		"sector": "Information Technology",
+		"index":  "Alternext"
 	},{
 		"name":   "Societe Generale",
 		"symbol": "GLE",
